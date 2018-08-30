@@ -5,7 +5,7 @@ using BoVoyage.Framework.UI;
 
 namespace BoVoyageEF
 {
-    public class Clients : ModuleBase<Application>
+    public class ClientsMenu : ModuleBase<Application>
     {
         // On définit ici les propriétés qu'on veut afficher
         //  et la manière de les afficher
@@ -21,7 +21,7 @@ namespace BoVoyageEF
 
         private readonly List<Client> liste = new List<Client>();
 
-        public Clients(Application application, string nomModule)
+        public ClientsMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
             this.liste = new List<Client>

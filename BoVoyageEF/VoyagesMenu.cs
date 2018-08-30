@@ -5,7 +5,7 @@ using BoVoyage.Framework.UI;
 
 namespace BoVoyageEF
 {
-    public class Dossiers : ModuleBase<Application>
+    public class VoyagesMenu : ModuleBase<Application>
     {
         // On définit ici les propriétés qu'on veut afficher
         //  et la manière de les afficher
@@ -19,11 +19,16 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Client>(x=>x.DateInscription, "Date", 10),
             };
 
+        private readonly List<Client> liste = new List<Client>();
 
-        public Dossiers(Application application, string nomModule)
+        public VoyagesMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
-            
+            this.liste = new List<Client>
+            {
+                new Client{Id = 1, Nom = "BAZAN", Prenom = "Yannick", DateInscription = new DateTime(2010,1,1),Email = "ybazan.pro@live.fr" },
+                new Client{Id = 2, Nom = "PEANT", Prenom = "Frédéric", Email = "f.peant@gtm-ingenierie.fr" },
+            };
         }
 
         protected override void InitialiserMenu(Menu menu)
@@ -43,7 +48,7 @@ namespace BoVoyageEF
         {
             ConsoleHelper.AfficherEntete("Afficher Clients");
 
-          //  ConsoleHelper.AfficherListe(this.liste, strategieAffichageClients);
+            ConsoleHelper.AfficherListe(this.liste, strategieAffichageClients);
         }
 
         private void Nouveau()
@@ -58,7 +63,7 @@ namespace BoVoyageEF
                 DateInscription = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
             };
 
-           // this.liste.Add(client);
+            this.liste.Add(client);
         }
     }
 }

@@ -10,11 +10,11 @@ namespace BoVoyageEF
         {
         }
 
-        public Clients Clients { get; private set; }
+        public ClientsMenu Clients { get; private set; }
 
         protected override void InitialiserModules()
         {
-            this.Clients = this.AjouterModule(new Clients(this, "Clients"));
+            this.Clients = this.AjouterModule(new ClientsMenu(this, "Clients"));
         }
     }
 }

@@ -47,9 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="Dossiers.cs" />
-    <Compile Include="Voyages.cs" />
-    <Compile Include="Clients.cs" />
+    <Compile Include="DossiersMenu.cs" />
+    <Compile Include="VoyagesMenu.cs" />
+    <Compile Include="ClientsMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
