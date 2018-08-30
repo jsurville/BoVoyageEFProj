@@ -11,8 +11,10 @@ namespace BoVoyageMetier.Entities
     {
         public int Id { get; set; }
         public int NumeroUnique { get; set; }
-        public EtatDossierReservation EtatDossier { get; set; }
         public string NumeroCarteBancaire { get; set; }
+        public decimal PrixParPersonne { get; set; }
+        public EtatDossierReservation EtatDossier { get; set; }
+        public RaisonAnnulationDossier RaisonAnnulationDossier { get; set; }
         public int AssuranceId { get; set; }
         public int VoyageId { get; set; }
         public int ClientId { get; set; }
@@ -32,5 +34,5 @@ namespace BoVoyageMetier.Entities
 
 
     public enum EtatDossierReservation { EnAttente, EnCours, Refuse, Accepte, Clos, Annule, InSolvable }
-    public enum RaisonAnnulationDossier { Client =1, PlaceInsuffisantes=2 }
+    public enum RaisonAnnulationDossier { Client = 1, PlacesInsuffisantes = 2 }
 }

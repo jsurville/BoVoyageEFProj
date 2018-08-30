@@ -11,15 +11,13 @@ namespace BoVoyageMetier.Entities
 
     public class Participant:Personne
     {
-      
-        public int DossierVoyageId { get; set; }
+        public int NumeroUnique { get; set; }
+        public float Montant { get; set; }
 
-        [ForeignKey("ClientId")]
-        public virtual Client Client { get; set; }
-
-
-        [ForeignKey("DossierVoyageId")]
-        public virtual DossierReservation DossierVoyage { get; set; }
+        public int DossierReservationId { get; set; }
+        
+        [ForeignKey("DossierReservationId")]
+        public virtual DossierReservation DossierReservation { get; set; }
     }
 }
 
