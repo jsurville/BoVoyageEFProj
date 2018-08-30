@@ -17,8 +17,8 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Destination>(x=>x.Id, "Id", 3),
                 InformationAffichage.Creer<Destination>(x=>x.Continent, "Continent", 10),
                 InformationAffichage.Creer<Destination>(x=>x.Pays, "Pays", 10),
-                InformationAffichage.Creer<Destination>(x=>x.Region, "Région", 10),
-                InformationAffichage.Creer<Destination>(x=>x.Description, "Description", 20),                
+                InformationAffichage.Creer<Destination>(x=>x.Region, "Région", 15),
+                InformationAffichage.Creer<Destination>(x=>x.Description, "Description", 25),                
             };
 
         private static readonly List<InformationAffichage> strategieAffichageVoyages =
@@ -28,7 +28,7 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Voyage>(x=>x.Destination.Region, "Destination", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date Aller", 10),
                 InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date Retour", 10),
-                InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Nbre Voyageurs", 4),
+                InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Nb Places", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.PrixParPersonne, "Prix/pers.", 10)
             };
 
