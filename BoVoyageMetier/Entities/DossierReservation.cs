@@ -7,13 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BoVoyageMetier.Entities
 {
-    public class DossierVoyage
+    public class DossierReservation
     {
         public int Id { get; set; }
         public int NumeroUnique { get; set; }
-        public EtatDossier EtatDossier { get; set; }
+        public EtatDossierReservation EtatDossier { get; set; }
         public string NumeroCarteBancaire { get; set; }
-        public bool AnnulationAssurance { get; set; }
+        public int AssuranceId { get; set; }
         public int VoyageId { get; set; }
         public int ClientId { get; set; }
 
@@ -21,9 +21,16 @@ namespace BoVoyageMetier.Entities
         [ForeignKey("VoyageId")]
         public virtual Voyage Voyage { get; set; }
 
+        [ForeignKey("ClientId")]
+        public virtual Client Client { get; set; }
+
+        [ForeignKey("AssuranceId")]
+        public virtual Assurance Assurance { get; set; }
+
         public virtual ICollection<Participant> Participants { get; set; }
     }
 
 
-    public enum EtatDossier { EnAttente, EnCours, Refuse, Accepte, Clos, Annule, InSolvable }
+    public enum EtatDossierReservation { EnAttente, EnCours, Refuse, Accepte, Clos, Annule, InSolvable }
+    public enum RaisonAnnulationDossier { Client =1, PlaceInsuffisantes=2 }
 }

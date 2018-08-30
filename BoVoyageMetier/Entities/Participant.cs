@@ -11,7 +11,7 @@ namespace BoVoyageMetier.Entities
 
     public class Participant:Personne
     {
-        public int ClientId { get; set; }
+      
         public int DossierVoyageId { get; set; }
 
         [ForeignKey("ClientId")]
@@ -19,7 +19,7 @@ namespace BoVoyageMetier.Entities
 
 
         [ForeignKey("DossierVoyageId")]
-        public virtual DossierVoyage DossierVoyage { get; set; }
+        public virtual DossierReservation DossierVoyage { get; set; }
     }
 }
 

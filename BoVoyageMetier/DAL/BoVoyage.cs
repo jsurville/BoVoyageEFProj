@@ -13,7 +13,7 @@ namespace BoVoyageMetier.DAL
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Voyage> Voyages { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<DossierVoyage> DossierVoyages { get; set; }
+        public DbSet<DossierReservation> DossierVoyages { get; set; }
         /*
         public DbSet<Accompagnant> Accompagnants { get; set; }
         public DbSet<CarteBancaire> CarteBancaires { get; set; }

@@ -8,6 +8,7 @@ namespace BoVoyageMetier.Entities
 {
     public class Assurance
     {
+        public int Id { get; set; }
         public decimal Montant { get; set; }
         public TypeAssurance TypeAssurance { get; set; }
     }

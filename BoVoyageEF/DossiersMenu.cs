@@ -12,13 +12,13 @@ namespace BoVoyageEF
         private static readonly List<InformationAffichage> strategieAffichageDossiers =
             new List<InformationAffichage>
             {
-                InformationAffichage.Creer<DossierVoyage>(x=>x.Id, "Id", 3),
-                InformationAffichage.Creer<DossierVoyage>(x=>x.NumeroUnique, "No Unique", 4),
-                InformationAffichage.Creer<DossierVoyage>(x=>x.EtatDossier, "Etat", 10),
-                InformationAffichage.Creer<DossierVoyage>(x=>x.NumeroCarteBancaire, "Prenom", 10),
-                InformationAffichage.Creer<DossierVoyage>(x=>x.AnnulationAssurance, "Assurance", 10),
-                InformationAffichage.Creer<DossierVoyage>(x=>x.ClientId, "ID Client", 15),
-                InformationAffichage.Creer<DossierVoyage>(x=>x.VoyageId, "Id Voyage", 15)
+                InformationAffichage.Creer<DossierReservation>(x=>x.Id, "Id", 3),
+                InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No Unique", 4),
+                InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossier, "Etat", 10),
+                InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Prenom", 10),
+               // InformationAffichage.Creer<DossierReservation>(x=>x.AnnulationAssurance, "Assurance", 10),
+                InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "ID Client", 15),
+                InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "Id Voyage", 15)
             };
 
 
@@ -52,7 +52,7 @@ namespace BoVoyageEF
         {
             ConsoleHelper.AfficherEntete("Nouveau");
 
-            var dossierVoyage = new DossierVoyage
+            var dossierVoyage = new DossierReservation
             {
                 //Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
                 //Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
