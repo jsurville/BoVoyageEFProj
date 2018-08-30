@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoVoyageMetier.Entities;
+using BoVoyageMetier.DAL;
 
 namespace BoVoyageMetier.Services
 {
@@ -11,6 +12,8 @@ namespace BoVoyageMetier.Services
 	{
 		public Destination Ajout(Destination destination)
 		{
+			var dest = new DestinationData();
+			dest.Ajout(destination);
 			return destination;
 		}
 	}
