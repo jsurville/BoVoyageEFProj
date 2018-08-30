@@ -13,9 +13,9 @@ namespace BoVoyageMetier.Entities
         public int DestinationId { get; set; }
         public DateTime DateAller { get; set; }
         public DateTime DateRetour { get; set; }
-        public int NombreVoygeur { get; set; }
+        public int PlacesDisponibles { get; set; }
   
-        public decimal PrixUnitaire { get; set; }
+        public decimal PrixParPersonne { get; set; }
 
         [ForeignKey("DestinationId")]
         public virtual Destination Destination { get; set; }
