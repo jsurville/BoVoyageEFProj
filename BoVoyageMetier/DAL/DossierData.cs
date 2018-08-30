@@ -11,8 +11,10 @@ namespace BoVoyageMetier.DAL
     {
         public List<DossierReservation> GetList()
         {
-            //return new BoVoyage().Destinations.ToList();
-            return new List<DossierReservation>();
+            using (var contexte = new BoVoyage())
+            {
+                return contexte.DossierReservations.ToList();          
+            }                    
         }
     }
 }
