@@ -13,6 +13,15 @@ namespace BoVoyageMetier.Entities
         public int NumeroUnique { get; set; }
         public string NumeroCarteBancaire { get; set; }
         public decimal PrixParPersonne { get; set; }
+        public decimal PrixTotal
+        {
+            get
+            {
+                return 0;
+                //foreach (part)
+                // return this.Participants.Count * this.Voyage.PrixParPersonne * 1.2m;
+            }
+        }
         public EtatDossierReservation EtatDossier { get; set; }
         public RaisonAnnulationDossier RaisonAnnulationDossier { get; set; }
         public int VoyageId { get; set; }
@@ -26,7 +35,7 @@ namespace BoVoyageMetier.Entities
         public virtual Client Client { get; set; }
 
         public virtual ICollection<Assurance> Assurances { get; set; }
-        public virtual ICollection<Participant> Participants { get; set; }        
+        public virtual ICollection<Participant> Participants { get; set; }
     }
 
 
