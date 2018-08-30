@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\BoVoyage.cs" />
+    <Compile Include="DAL\ClientData.cs" />
+    <Compile Include="Entities\Destination.cs" />
     <Compile Include="Entities\Participant.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\DossierVoyage.cs" />
@@ -48,7 +51,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
