@@ -25,8 +25,8 @@ namespace BoVoyageEF
         public DossiersMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
-			//this.liste = new DossierData().GetList();
-		}
+            //this.liste = new DossierData().GetList();
+        }
 
         protected override void InitialiserMenu(Menu menu)
         {
@@ -54,10 +54,10 @@ namespace BoVoyageEF
 
             var dossierVoyage = new DossierVoyage
             {
-                Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
-                Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
-                Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
-                DateNaissance = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
+                //Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
+                //Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
+                //Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
+                //DateNaissance = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
             };
 
            // this.liste.Add(client);
