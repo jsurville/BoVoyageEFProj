@@ -21,18 +21,18 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Destination>(x=>x.Description, "Description", 20),                
             };
 
-		private static readonly List<InformationAffichage> strategieAffichageVoyages =
-			new List<InformationAffichage>
-			{
-				InformationAffichage.Creer<Voyage>(x=>x.Id, "Id", 3),
-				InformationAffichage.Creer<Voyage>(x=>x.Destination, "Continent", 10),
-				InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Pays", 10),
-				InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Région", 10),
-				InformationAffichage.Creer<Voyage>(x=>x.NombreVoygeur, "Description", 20),
-				InformationAffichage.Creer<Voyage>(x=>x.PrixUnitaire, "Prix/pers.", 20)
-			};
+        private static readonly List<InformationAffichage> strategieAffichageVoyages =
+            new List<InformationAffichage>
+            {
+                InformationAffichage.Creer<Voyage>(x=>x.Id, "Id", 3),
+                InformationAffichage.Creer<Voyage>(x=>x.Destination, "Destination", 15),
+                InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date Aller", 15),
+                InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date Retour", 15),
+                InformationAffichage.Creer<Voyage>(x=>x.NombreVoygeur, "Nbre Voyageurs", 4),
+                InformationAffichage.Creer<Voyage>(x=>x.PrixUnitaire, "Prix/pers.", 5)
+            };
 
-		
+        
         public VoyagesMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
@@ -41,19 +41,31 @@ namespace BoVoyageEF
 
         protected override void InitialiserMenu(Menu menu)
         {
-            menu.AjouterElement(new ElementMenu("1", "Afficher")
+            menu.AjouterElement(new ElementMenu("1", "Liste des Destinations ")
             {
-                FonctionAExecuter = this.Afficher
+                FonctionAExecuter = this.AfficherDestination
             });
-            menu.AjouterElement(new ElementMenu("2", "Nouveau Voyage")
+            menu.AjouterElement(new ElementMenu("2", "Enregistrer Nouvelle Destination")
+            {
+                FonctionAExecuter = this.NouveauDestination
+            });
+
+            menu.AjouterElement(new ElementMenu("3", "Liste des Voyages")
+            {
+                FonctionAExecuter = this.AfficherVoyage
+            });
+            
+            menu.AjouterElement(new ElementMenu("4", "Enregistrer un Nouveau Voyage")
             {
                 FonctionAExecuter = this.NouveauVoyage
             });
-			menu.AjouterElement(new ElementMenu("3", "Nouvelle Destination")
-			{
-				FonctionAExecuter = this.NouveauDestination
-			});
-			menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
+            menu.AjouterElement(new ElementMenu("5", "Supprimer un Voyage")
+            {
+                FonctionAExecuter = this.SupprimerVoyage
+            });
+
+
+            menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
         private void AfficherDestination()
@@ -63,14 +75,14 @@ namespace BoVoyageEF
             ConsoleHelper.AfficherListe(new DestinationData().GetList(), strategieAffichageDestination);
         }
 
-		private void AfficherVoyage()
-		{
-			ConsoleHelper.AfficherEntete("Afficher les Voyages");
+        private void AfficherVoyage()
+        {
+            ConsoleHelper.AfficherEntete("Afficher les Voyages");
 
-			ConsoleHelper.AfficherListe(new VoyageData().GetList(), strategieAffichageVoyages);
-		}
+            ConsoleHelper.AfficherListe(new VoyageData().GetList(), strategieAffichageVoyages);
+        }
 
-		private void NouveauDestination()
+        private void NouveauDestination()
         {
             ConsoleHelper.AfficherEntete("Nouvelle Destination");
 
@@ -81,24 +93,43 @@ namespace BoVoyageEF
                 Region = ConsoleSaisie.SaisirChaineObligatoire("Region ?"),
                 Description = ConsoleSaisie.SaisirChaineOptionnelle("Description ?")
             };
-			var destinationService = new DestinationService();
-			destinationService.Ajout(destination);
+            var destinationService = new DestinationService();
+            destinationService.Ajout(destination);
         }
 
-		private void NouveauVoyage()
-		{
-			ConsoleHelper.AfficherEntete("Nouveau Voyage");
+        private void NouveauVoyage()
+        {
+            ConsoleHelper.AfficherEntete("Nouveau Voyage");
 
-			var voyage = new Voyage
-			{
-				DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
-				DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
-				DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
-				NombreVoygeur = ConsoleSaisie.SaisirEntierObligatoire("Nbre de VOyageurs ?"),
-				PrixUnitaire = ConsoleSaisie.SaisirDecimalObligatoire("Description ?")
-			};
-			var voyageService = new VoyageService();
-			voyageService.Ajout(voyage);
-		}
-	}
+            var voyage = new Voyage
+            {
+                DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
+                DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
+                DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
+                NombreVoygeur = ConsoleSaisie.SaisirEntierObligatoire("Nbre de VOyageurs ?"),
+                PrixUnitaire = ConsoleSaisie.SaisirDecimalObligatoire("Prix/pers. ?")
+            };
+            var voyageService = new VoyageService();
+            voyageService.Ajout(voyage);
+        }
+
+        private void SupprimerVoyage()
+        {
+            //ConsoleHelper.AfficherEntete("Nouveau Voyage");
+            var voyageService = new VoyageService();
+            var voyage = new Voyage();
+            voyage.Id = ConsoleSaisie.SaisirEntierObligatoire("Id du voyage à supprimer ?");
+            var succes = voyageService.Supprimer(voyage.Id);
+            if (succes == true)
+            {
+                Console.WriteLine("Le voyage a été supprimé");
+            }
+            else
+            {
+                Console.WriteLine("Impossible de supprimer le voayge ");
+            }
+        }
+
+
+    }
 }

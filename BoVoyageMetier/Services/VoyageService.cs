@@ -13,5 +13,10 @@ namespace BoVoyageMetier.Services
 		{
 			return voyage;
 		}
+
+		public bool Supprimer(int voyageId)
+		{
+			return true;
+		}
 	}
 }
