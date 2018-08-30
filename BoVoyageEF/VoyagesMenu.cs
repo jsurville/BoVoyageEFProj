@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using  BoVoyageMetier.Entities;
 using BoVoyage.Framework.UI;
+using BoVoyageMetier.DAL;
 
 namespace BoVoyageEF
 {
@@ -9,29 +10,22 @@ namespace BoVoyageEF
     {
         // On définit ici les propriétés qu'on veut afficher
         //  et la manière de les afficher
-        private static readonly List<InformationAffichage> strategieAffichageClients =
+        private static readonly List<InformationAffichage> strategieAffichageDestination =
             new List<InformationAffichage>
             {
-                InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),
-                InformationAffichage.Creer<Client>(x=>x.Civilite, "M/Mme", 4),
-                InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 10),
-                InformationAffichage.Creer<Client>(x=>x.Prenom, "Prenom", 10),
-                InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 10),
-                InformationAffichage.Creer<Client>(x=>x.Email, "Email", 15),
-                InformationAffichage.Creer<Client>(x=>x.Telephone, "Telephone", 15),
-                InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date", 10),
+                InformationAffichage.Creer<Destination>(x=>x.Id, "Id", 3),
+                InformationAffichage.Creer<Destination>(x=>x.Continent, "Continent", 10),
+                InformationAffichage.Creer<Destination>(x=>x.Pays, "Pays", 10),
+                InformationAffichage.Creer<Destination>(x=>x.Region, "Région", 10),
+                InformationAffichage.Creer<Destination>(x=>x.Description, "Description", 20),                
             };
 
-        private readonly List<Client> liste = new List<Client>();
+        private readonly List<Destination> liste = new List<Destination>();
 
         public VoyagesMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
-            this.liste = new List<Client>
-            {
-                new Client{Id = 1, Nom = "BAZAN", Prenom = "Yannick", DateNaissance = new DateTime(2010,1,1),Email = "ybazan.pro@live.fr" },
-                new Client{Id = 2, Nom = "PEANT", Prenom = "Frédéric", Email = "f.peant@gtm-ingenierie.fr" },
-            };
+            this.liste = new DestinationData().GetList();
         }
 
         protected override void InitialiserMenu(Menu menu)
@@ -47,26 +41,26 @@ namespace BoVoyageEF
             menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
-        private void AfficherClient()
+        private void AfficherDestination()
         {
-            ConsoleHelper.AfficherEntete("Afficher Clients");
+            ConsoleHelper.AfficherEntete("Afficher Destinations");
 
-            ConsoleHelper.AfficherListe(this.liste, strategieAffichageClients);
+            ConsoleHelper.AfficherListe(this.liste, strategieAffichageDestination);
         }
 
         private void Nouveau()
         {
             ConsoleHelper.AfficherEntete("Nouveau");
 
-            var client = new Client
+            var destination = new Destination
             {
-                Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
-                Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
-                Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
-                DateNaissance = ConsoleSaisie.SaisirDateOptionnelle("Date de Naissance ?")
+                Continent = ConsoleSaisie.SaisirChaineObligatoire("Continent ?"),
+                Pays = ConsoleSaisie.SaisirChaineObligatoire("Pays ?"),
+                Region = ConsoleSaisie.SaisirChaineObligatoire("Region ?"),
+                Description = ConsoleSaisie.SaisirChaineOptionnelle("Description ?")
             };
 
-            this.liste.Add(client);
+            this.liste.Add(destination);
         }
     }
 }
