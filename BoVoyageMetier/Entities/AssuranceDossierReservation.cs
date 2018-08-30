@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BoVoyageMetier.Entities
 {
-    class AssuranceDossierReservation
+    public class AssuranceDossierReservation
     {
         [Key]
         public int AssuranceId { get; set; }
