@@ -25,8 +25,7 @@ namespace BoVoyageEF
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Voyage>(x=>x.Id, "Id", 3),
-				
-                InformationAffichage.Creer<Voyage>(x=>x.Destination, "Destination", 15),
+                InformationAffichage.Creer<Voyage>(x=>x.Destination.Region, "Destination", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date Aller", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date Retour", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Nbre Voyageurs", 4),
