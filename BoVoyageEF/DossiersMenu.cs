@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using  BoVoyageMetier.Entities;
 using BoVoyage.Framework.UI;
 using BoVoyageMetier.DAL;
+using BoVoyageMetier.Services;
 
 namespace BoVoyageEF
 {
@@ -128,7 +129,19 @@ namespace BoVoyageEF
 		{
 			ConsoleHelper.AfficherEntete("Enregistrer un Participant");
 
-			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			var participant = new Participant
+			{
+				Civilite = ConsoleSaisie.SaisirChaineObligatoire("Mr/Mme ?"),
+				Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
+				Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
+				
+				Telephone = ConsoleSaisie.SaisirChaineOptionnelle("Telephone ?"),
+				DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de Naissance ?"),
+				Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
+			};
+
+			var dossierReservationService = new DossierReservationService();
+			dossierReservationService.AjoutParticipant(participant);
 		}
 
 
