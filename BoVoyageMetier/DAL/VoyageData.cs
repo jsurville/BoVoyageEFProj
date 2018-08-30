@@ -33,9 +33,7 @@ namespace BoVoyageMetier.DAL
 				using (var contexte = new BoVoyage())
 				{
 					return contexte.Voyages.Single(x => x.Id == voyageId);
-
 				}
-   				
 			}
 			catch
 			{
@@ -50,10 +48,8 @@ namespace BoVoyageMetier.DAL
 				contexte.Voyages.Attach(voyage);
 				contexte.Voyages.Remove(voyage);
 				contexte.SaveChanges();
-				
 			}
 			return true;
 		}
-
 	}
 }
