@@ -6,15 +6,15 @@ namespace BoVoyageEF
     public class Application : ApplicationBase
     {
         public Application()
-            : base("Mon application")
+            : base("BoVoyage")
         {
         }
 
-        public Module1 Module1 { get; private set; }
+        public Clients Clients { get; private set; }
 
         protected override void InitialiserModules()
         {
-            this.Module1 = this.AjouterModule(new Module1(this, "Module 1"));
+            this.Clients = this.AjouterModule(new Clients(this, "Clients"));
         }
     }
 }
