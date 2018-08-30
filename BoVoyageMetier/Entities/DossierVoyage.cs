@@ -17,11 +17,11 @@ namespace BoVoyageMetier.Entities
         public int ClientId { get; set; }
 
 
-		[ForeignKey("VoyageId")]
-		public virtual Voyage Voyage { get; set; }
+        [ForeignKey("VoyageId")]
+        public virtual Voyage Voyage { get; set; }
 
-		public virtual ICollection<Participant> Participants { get; set; }
-	}
+        public virtual ICollection<Participant> Participants { get; set; }
+    }
 
 
     enum EtatDossier { EnAttente, EnCours, Refuse, Accepte, Clos, Annule,InSolvable }

@@ -13,10 +13,13 @@ namespace BoVoyageEF
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),
-                InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 10),
+				InformationAffichage.Creer<Client>(x=>x.Civilite, "M/Mme", 4),
+				InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 10),
                 InformationAffichage.Creer<Client>(x=>x.Prenom, "Prenom", 10),
-                InformationAffichage.Creer<Client>(x=>x.Email, "Email", 15),
-                InformationAffichage.Creer<Client>(x=>x.DateInscription, "Date", 10),
+				InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 10),
+				InformationAffichage.Creer<Client>(x=>x.Email, "Email", 15),
+				InformationAffichage.Creer<Client>(x=>x.Telephone, "Telephone", 15),
+				InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date", 10),
             };
 
 
@@ -55,7 +58,7 @@ namespace BoVoyageEF
                 Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
                 Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
                 Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
-                DateInscription = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
+                DateNaissance = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
             };
 
            // this.liste.Add(client);

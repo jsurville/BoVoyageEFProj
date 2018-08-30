@@ -18,7 +18,10 @@ namespace BoVoyageMetier.Entities
 
 		public string Adresse { get; set; }
 
-		public DateTime? DateInscription { get; set; }
+		public string Telephone { get; set; }
+
+		public DateTime? DateNaissance { get; set; }
+
 
 		public override string ToString()
 		{

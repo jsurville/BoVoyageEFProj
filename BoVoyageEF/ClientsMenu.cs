@@ -12,12 +12,15 @@ namespace BoVoyageEF
         private static readonly List<InformationAffichage> strategieAffichageClients =
             new List<InformationAffichage>
             {
-                InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),
-                InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 10),
-                InformationAffichage.Creer<Client>(x=>x.Prenom, "Prenom", 10),
-                InformationAffichage.Creer<Client>(x=>x.Email, "Email", 15),
-                InformationAffichage.Creer<Client>(x=>x.DateInscription, "Date", 10),
-            };
+				InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),
+				InformationAffichage.Creer<Client>(x=>x.Civilite, "M/Mme", 4),
+				InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 10),
+				InformationAffichage.Creer<Client>(x=>x.Prenom, "Prenom", 10),
+				InformationAffichage.Creer<Client>(x=>x.Email, "Email", 15),
+				InformationAffichage.Creer<Client>(x=>x.Telephone, "Telephone", 15),
+				InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date de Naissance", 10),
+				InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 10),
+			};
 
         private readonly List<Client> liste = new List<Client>();
 
@@ -26,8 +29,8 @@ namespace BoVoyageEF
         {
             this.liste = new List<Client>
             {
-                new Client{Id = 1, Nom = "BAZAN", Prenom = "Yannick", DateInscription = new DateTime(2010,1,1),Email = "ybazan.pro@live.fr" },
-                new Client{Id = 2, Nom = "PEANT", Prenom = "Frédéric", Email = "f.peant@gtm-ingenierie.fr" },
+                new Client{Id = 1, Civilite = "Mr", Nom = "BAZAN", Prenom = "Yannick", DateNaissance = new DateTime(2010,1,1),Email = "ybazan.pro@live.fr", Telephone = "0556371195", Adresse="56 chemin vert 33000 Bordeaux" },
+                new Client{Id = 2, Civilite = "Mr", Nom = "PEANT", Prenom = "Frédéric", Email = "f.peant@gtm-ingenierie.fr" },
             };
         }
 
@@ -57,11 +60,14 @@ namespace BoVoyageEF
 
             var client = new Client
             {
-                Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
+				Civilite = ConsoleSaisie.SaisirChaineObligatoire("Mr/Mme ?"),
+				Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
                 Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
                 Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
-                DateInscription = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
-            };
+				Telephone = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
+				DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de Naissance ?"),
+				Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
+			};
 
             this.liste.Add(client);
         }
