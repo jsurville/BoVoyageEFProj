@@ -14,5 +14,15 @@ namespace BoVoyageMetier.DAL
             return new BoVoyage().Voyages.Include("Destination").ToList();
             //return new List<Voyage>();
         }
-    }
+
+		public Voyage Ajout(Voyage voyage)
+		{
+			using (var contexte = new BoVoyage())
+			{
+				contexte.Voyages.Add(voyage);
+				contexte.SaveChanges();
+			}
+			return voyage;
+		}
+	}
 }

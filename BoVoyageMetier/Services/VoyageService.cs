@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BoVoyageMetier.DAL;
 using BoVoyageMetier.Entities;
 
 namespace BoVoyageMetier.Services
@@ -11,6 +12,8 @@ namespace BoVoyageMetier.Services
 	{
 		public Voyage Ajout(Voyage voyage)
 		{
+			var voyageData = new VoyageData();
+			voyageData.Ajout(voyage);
 			return voyage;
 		}
 

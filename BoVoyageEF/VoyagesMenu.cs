@@ -106,9 +106,10 @@ namespace BoVoyageEF
                 DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
                 DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
                 DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
-                PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Nbre de VOyageurs ?"),
-                PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix/pers. ?")
-            };
+                PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places max disponibles ?"),
+                PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix/pers. ?"),
+				AgenceVoyageId = ConsoleSaisie.SaisirEntierObligatoire("Id de l'Agence de Voyage ?")
+			};
             var voyageService = new VoyageService();
             voyageService.Ajout(voyage);
         }
