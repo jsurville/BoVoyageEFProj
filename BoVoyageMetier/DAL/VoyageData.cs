@@ -7,12 +7,12 @@ using BoVoyageMetier.Entities;
 
 namespace BoVoyageMetier.DAL
 {
-    public class DestinationData
+    public class VoyageData
     {
-        public List<Destination> GetList()
+        public List<Voyage> GetList()
         {
             //return new BoVoyage().Destinations.ToList();
-            return new List<Destination>();
+            return new List<Voyage>();
         }
     }
 }
