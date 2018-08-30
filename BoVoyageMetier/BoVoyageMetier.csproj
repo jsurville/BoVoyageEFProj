@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\BoVoyage.cs" />
+    <Compile Include="DAL\DossierData.cs" />
     <Compile Include="DAL\VoyageData.cs" />
     <Compile Include="DAL\DestinationData.cs" />
     <Compile Include="DAL\ClientData.cs" />

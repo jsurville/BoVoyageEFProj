@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using  BoVoyageMetier.Entities;
 using BoVoyage.Framework.UI;
+using BoVoyageMetier.DAL;
 
 namespace BoVoyageEF
 {
@@ -30,27 +31,27 @@ namespace BoVoyageEF
 
         protected override void InitialiserMenu(Menu menu)
         {
-            menu.AjouterElement(new ElementMenu("1", "Afficher")
+            menu.AjouterElement(new ElementMenu("1", "Liste des Dossiers")
             {
                 FonctionAExecuter = this.Afficher
             });
-            menu.AjouterElement(new ElementMenu("2", "Nouveau")
+            menu.AjouterElement(new ElementMenu("2", "Enregistrer un Nouveau Dossier")
             {
-                FonctionAExecuter = this.Nouveau
+                FonctionAExecuter = this.NouveauDossier
             });
             menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
         private void AfficherDossier()
         {
-            ConsoleHelper.AfficherEntete("Afficher Dossiers");
+            ConsoleHelper.AfficherEntete("Liste des Dossiers");
 
-           // ConsoleHelper.AfficherListe(this.liste, strategieAffichageDossiers);
+            ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
         }
 
-        private void Nouveau()
+        private void NouveauDossier()
         {
-            ConsoleHelper.AfficherEntete("Nouveau");
+            ConsoleHelper.AfficherEntete("Nouveau Dossier");
 
             var dossierVoyage = new DossierReservation
             {
