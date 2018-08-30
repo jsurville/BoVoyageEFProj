@@ -9,9 +9,8 @@ using System.ComponentModel.DataAnnotations;
 namespace BoVoyageMetier.Entities
 {
 
-    class Participant
+    public class Participant:Personne
     {
-        public int Id { get; set; }
         public int ClientId { get; set; }
         public int DossierVoyageId { get; set; }
 

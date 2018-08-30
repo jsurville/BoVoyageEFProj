@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BoVoyageMetier.Entities
 {
-    class Voyage
+    public class Voyage
     {
         public int Id { get; set; }
         public int DestinationId { get; set; }

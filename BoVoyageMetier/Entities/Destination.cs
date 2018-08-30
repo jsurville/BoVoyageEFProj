@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BoVoyageMetier.Entities
 {
-    class Destination
+    public class Destination
     {
     }
 }

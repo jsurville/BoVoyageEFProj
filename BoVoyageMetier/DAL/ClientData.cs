@@ -7,7 +7,7 @@ using BoVoyageMetier.Entities;
 
 namespace BoVoyageMetier.DAL
 {
-    class ClientData
+    public class ClientData
     {
         public List<Client> GetList()
         {

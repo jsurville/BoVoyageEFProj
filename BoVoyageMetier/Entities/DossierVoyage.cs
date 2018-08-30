@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BoVoyageMetier.Entities
 {
-    class DossierVoyage
+    public class DossierVoyage
     {
         public int Id { get; set; }
         public EtatDossier EtatDossier { get; set; }
@@ -24,5 +24,5 @@ namespace BoVoyageMetier.Entities
     }
 
 
-    enum EtatDossier { EnAttente, EnCours, Refuse, Accepte, Clos, Annule,InSolvable }
+    public enum EtatDossier { EnAttente, EnCours, Refuse, Accepte, Clos, Annule,InSolvable }
 }
