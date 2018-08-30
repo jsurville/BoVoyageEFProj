@@ -11,8 +11,8 @@ namespace BoVoyageMetier.DAL
     {
         public List<Destination> GetList()
         {
-            //return new BoVoyage().Destinations.ToList();
-            return new List<Destination>();
+            return new BoVoyage().Destinations.ToList();
+           // return new List<Destination>();
         }
     }
 }
