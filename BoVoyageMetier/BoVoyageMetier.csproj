@@ -58,7 +58,6 @@
     <Compile Include="Services\VoyageService.cs" />
     <Compile Include="Services\DestinationService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.2.0</Version>
