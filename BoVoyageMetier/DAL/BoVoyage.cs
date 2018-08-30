@@ -19,7 +19,7 @@ namespace BoVoyageMetier.DAL
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Assurance> Assurances { get; set; }
         
-        public DbSet<AssuranceDossierReservation> AssuranceDossierReservations { get; set; }
+       // public DbSet<AssuranceDossierReservation> AssuranceDossierReservations { get; set; }
         
     }
 }
