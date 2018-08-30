@@ -12,7 +12,7 @@ namespace BoVoyageMetier.Entities
     public class Participant:Personne
     {
         public int NumeroUnique { get; set; }
-        public float Montant { get; set; }
+        public float Reduction { get; set; }
 
         public int DossierReservationId { get; set; }
         

@@ -19,9 +19,7 @@ namespace BoVoyageMetier.Entities
         public int DestinationId { get; set; }
         public int AgenceVoyageId { get; set; }
 
-
-        public decimal PrixParPersonne { get; set; }
-
+        
         [ForeignKey("DestinationId")]
         public virtual Destination Destination { get; set; }
         [ForeignKey("AgenceVoyageId")]
