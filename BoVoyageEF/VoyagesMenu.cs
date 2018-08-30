@@ -36,7 +36,7 @@ namespace BoVoyageEF
         public VoyagesMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
-            //this.liste = new DestinationData().GetList();
+            
         }
 
         protected override void InitialiserMenu(Menu menu)
@@ -115,7 +115,7 @@ namespace BoVoyageEF
 
         private void SupprimerVoyage()
         {
-            //ConsoleHelper.AfficherEntete("Nouveau Voyage");
+            ConsoleHelper.AfficherEntete("Suppression d'un Voyage");
             var voyageService = new VoyageService();
             var voyage = new Voyage();
             voyage.Id = ConsoleSaisie.SaisirEntierObligatoire("Id du voyage à supprimer ?");
