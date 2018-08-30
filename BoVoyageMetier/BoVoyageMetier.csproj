@@ -44,6 +44,7 @@
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\DossierVoyage.cs" />
     <Compile Include="Entities\Voyage.cs" />
+    <Compile Include="Entities\Personne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
