@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using  BoVoyageMetier.Entities;
 using BoVoyage.Framework.UI;
 using BoVoyageMetier.DAL;
+using BoVoyageMetier.Services;
 
 namespace BoVoyageEF
 {
@@ -34,27 +35,27 @@ namespace BoVoyageEF
 
         protected override void InitialiserMenu(Menu menu)
         {
-            menu.AjouterElement(new ElementMenu("1", "Afficher")
+            menu.AjouterElement(new ElementMenu("1", "Liste des Clients")
             {
-                FonctionAExecuter = this.Afficher
+                FonctionAExecuter = this.AfficherClient
             });
-            menu.AjouterElement(new ElementMenu("2", "Nouveau")
+            menu.AjouterElement(new ElementMenu("2", "Enregistrer un Nouveau Client")
             {
-                FonctionAExecuter = this.Nouveau
+                FonctionAExecuter = this.NouveauClient
             });
             menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
         private void AfficherClient()
         {
-            ConsoleHelper.AfficherEntete("Afficher Clients");
+            ConsoleHelper.AfficherEntete("Liste des Clients");
             
             ConsoleHelper.AfficherListe(new ClientData().GetList(), strategieAffichageClients);
         }
 
-        private void Nouveau()
+        private void NouveauClient()
         {
-            ConsoleHelper.AfficherEntete("Nouveau");
+            ConsoleHelper.AfficherEntete("Enregistrer un Nouveau Client");
 
             var client = new Client
             {
@@ -67,7 +68,8 @@ namespace BoVoyageEF
                 Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
             };
 
-            //this.liste.Add(client);
+			var clientService = new ClientService();
+			clientService.Ajout(client);
         }
     }
 }

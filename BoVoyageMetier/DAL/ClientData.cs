@@ -11,8 +11,18 @@ namespace BoVoyageMetier.DAL
     {
         public List<Client> GetList()
         {
-			// return new BoVoyage().Clients.ToList();
-			return new List<Client>();
+			return new BoVoyage().Clients.ToList();
+			
         }
-    }
+		public Client Ajout(Client client)
+		{
+			using (var contexte = new BoVoyage())
+			{
+				contexte.Clients.Add(client);
+				contexte.SaveChanges();
+			}
+			return client;
+
+		}
+	}
 }
