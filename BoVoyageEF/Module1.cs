@@ -44,9 +44,9 @@ namespace BoVoyageEF
             menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
-        private void Afficher()
+        private void AfficherClient()
         {
-            ConsoleHelper.AfficherEntete("Afficher");
+            ConsoleHelper.AfficherEntete("Afficher Clients");
 
             ConsoleHelper.AfficherListe(this.liste, strategieAffichageClients);
         }
