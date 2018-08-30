@@ -25,7 +25,7 @@ namespace BoVoyageMetier.Entities
         [ForeignKey("ClientId")]
         public virtual Client Client { get; set; }
 
-        public virtual ICollection<Participant> Participants { get; set; }
+        public virtual ICollection<Participant> Participants { get; set; }        
     }
 
 

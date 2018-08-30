@@ -14,10 +14,13 @@ namespace BoVoyageMetier.Entities
         public DateTime DateAller { get; set; }
         public DateTime DateRetour { get; set; }
         public int PlacesDisponibles { get; set; }
-  
+        public int AgenceVoyageId { get; set; }
+
         public decimal PrixParPersonne { get; set; }
 
         [ForeignKey("DestinationId")]
         public virtual Destination Destination { get; set; }
+        [ForeignKey("AgenceVoyageId")]
+        public virtual AgenceVoyage AgenceVoyage { get; set; }
     }
 }
