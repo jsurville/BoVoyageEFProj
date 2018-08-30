@@ -11,19 +11,21 @@ namespace BoVoyageMetier.DAL
     {
         public List<Destination> GetList()
         {
-            return new BoVoyage().Destinations.ToList();
-           // return new List<Destination>();
+            using (var contexte = new BoVoyage())
+            {
+                return contexte.Destinations.ToList();
+            }
         }
 
-		public Destination Ajout(Destination destination)
-		{
-			using (var contexte = new BoVoyage())
-			{
-				contexte.Destinations.Add(destination);
-				contexte.SaveChanges();
-			}
-				return destination;
-			
-		}
+        public Destination Ajout(Destination destination)
+        {
+            using (var contexte = new BoVoyage())
+            {
+                contexte.Destinations.Add(destination);
+                contexte.SaveChanges();
+            }
+            return destination;
+
+        }
     }
 }
