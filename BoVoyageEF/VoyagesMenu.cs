@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using  BoVoyageMetier.Entities;
 using BoVoyage.Framework.UI;
 using BoVoyageMetier.DAL;
+using BoVoyageMetier.Services;
 
 namespace BoVoyageEF
 {
@@ -20,8 +21,18 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Destination>(x=>x.Description, "Description", 20),                
             };
 
-        private readonly List<Destination> liste = new List<Destination>();
+		private static readonly List<InformationAffichage> strategieAffichageVoyages =
+			new List<InformationAffichage>
+			{
+				InformationAffichage.Creer<Voyage>(x=>x.Id, "Id", 3),
+				InformationAffichage.Creer<Voyage>(x=>x.Destination, "Continent", 10),
+				InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Pays", 10),
+				InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Région", 10),
+				InformationAffichage.Creer<Voyage>(x=>x.NombreVoygeur, "Description", 20),
+				InformationAffichage.Creer<Voyage>(x=>x.PrixUnitaire, "Prix/pers.", 20)
+			};
 
+		
         public VoyagesMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
@@ -34,23 +45,34 @@ namespace BoVoyageEF
             {
                 FonctionAExecuter = this.Afficher
             });
-            menu.AjouterElement(new ElementMenu("2", "Nouveau")
+            menu.AjouterElement(new ElementMenu("2", "Nouveau Voyage")
             {
-                FonctionAExecuter = this.Nouveau
+                FonctionAExecuter = this.NouveauVoyage
             });
-            menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
+			menu.AjouterElement(new ElementMenu("3", "Nouvelle Destination")
+			{
+				FonctionAExecuter = this.NouveauDestination
+			});
+			menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
         private void AfficherDestination()
         {
-            ConsoleHelper.AfficherEntete("Afficher Destinations");
+            ConsoleHelper.AfficherEntete("Afficher les Destinations");
 
-            ConsoleHelper.AfficherListe(this.liste, strategieAffichageDestination);
+            ConsoleHelper.AfficherListe(new DestinationData().GetList(), strategieAffichageDestination);
         }
 
-        private void Nouveau()
+		private void AfficherVoyage()
+		{
+			ConsoleHelper.AfficherEntete("Afficher les Voyages");
+
+			ConsoleHelper.AfficherListe(new VoyageData().GetList(), strategieAffichageVoyages);
+		}
+
+		private void NouveauDestination()
         {
-            ConsoleHelper.AfficherEntete("Nouveau");
+            ConsoleHelper.AfficherEntete("Nouvelle Destination");
 
             var destination = new Destination
             {
@@ -59,8 +81,24 @@ namespace BoVoyageEF
                 Region = ConsoleSaisie.SaisirChaineObligatoire("Region ?"),
                 Description = ConsoleSaisie.SaisirChaineOptionnelle("Description ?")
             };
-
-            this.liste.Add(destination);
+			var destinationService = new DestinationService();
+			destinationService.Ajout(destination);
         }
-    }
+
+		private void NouveauVoyage()
+		{
+			ConsoleHelper.AfficherEntete("Nouveau Voyage");
+
+			var voyage = new Voyage
+			{
+				DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
+				DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
+				DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
+				NombreVoygeur = ConsoleSaisie.SaisirEntierObligatoire("Nbre de VOyageurs ?"),
+				PrixUnitaire = ConsoleSaisie.SaisirDecimalObligatoire("Description ?")
+			};
+			var voyageService = new VoyageService();
+			voyageService.Ajout(voyage);
+		}
+	}
 }
