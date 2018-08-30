@@ -137,7 +137,7 @@ namespace BoVoyageEF
 		{
 			ConsoleHelper.AfficherEntete("Liste des Participants");
 
-			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageParticipants);
+			ConsoleHelper.AfficherListe(new ParticipantData().GetList(), strategieAffichageParticipants);
 		}
 		private void EnregistrerParticipant()
 		{
