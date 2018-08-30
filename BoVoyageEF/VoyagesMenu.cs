@@ -28,8 +28,8 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Voyage>(x=>x.Destination, "Destination", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date Aller", 15),
                 InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date Retour", 15),
-                InformationAffichage.Creer<Voyage>(x=>x.NombreVoygeur, "Nbre Voyageurs", 4),
-                InformationAffichage.Creer<Voyage>(x=>x.PrixUnitaire, "Prix/pers.", 5)
+                InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Nbre Voyageurs", 4),
+                InformationAffichage.Creer<Voyage>(x=>x.PrixParPersonne, "Prix/pers.", 5)
             };
 
         
@@ -106,8 +106,8 @@ namespace BoVoyageEF
                 DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
                 DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
                 DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
-                NombreVoygeur = ConsoleSaisie.SaisirEntierObligatoire("Nbre de VOyageurs ?"),
-                PrixUnitaire = ConsoleSaisie.SaisirDecimalObligatoire("Prix/pers. ?")
+                PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Nbre de VOyageurs ?"),
+                PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix/pers. ?")
             };
             var voyageService = new VoyageService();
             voyageService.Ajout(voyage);
