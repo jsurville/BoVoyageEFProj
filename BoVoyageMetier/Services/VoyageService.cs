@@ -19,7 +19,11 @@ namespace BoVoyageMetier.Services
 
 		public bool Supprimer(int voyageId)
 		{
-			return true;
+			var voyageData = new VoyageData();
+			var voyage = voyageData.GetById(voyageId);
+			return voyageData.Effacer(voyage);
+			
+			
 		}
 	}
 }

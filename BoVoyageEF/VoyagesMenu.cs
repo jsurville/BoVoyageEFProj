@@ -26,10 +26,10 @@ namespace BoVoyageEF
             {
                 InformationAffichage.Creer<Voyage>(x=>x.Id, "Id", 3),
                 InformationAffichage.Creer<Voyage>(x=>x.Destination.Region, "Destination", 15),
-                InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date Aller", 15),
-                InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date Retour", 15),
+                InformationAffichage.Creer<Voyage>(x=>x.DateAller, "Date Aller", 10),
+                InformationAffichage.Creer<Voyage>(x=>x.DateRetour, "Date Retour", 10),
                 InformationAffichage.Creer<Voyage>(x=>x.PlacesDisponibles, "Nbre Voyageurs", 4),
-                InformationAffichage.Creer<Voyage>(x=>x.PrixParPersonne, "Prix/pers.", 5)
+                InformationAffichage.Creer<Voyage>(x=>x.PrixParPersonne, "Prix/pers.", 10)
             };
 
         
