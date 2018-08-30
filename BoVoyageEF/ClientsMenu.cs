@@ -15,13 +15,13 @@ namespace BoVoyageEF
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),
-                InformationAffichage.Creer<Client>(x=>x.Civilite, "M/Mme", 4),
-                InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 10),
+                InformationAffichage.Creer<Client>(x=>x.Civilite, "M/Mme", 6),
+                InformationAffichage.Creer<Client>(x=>x.Nom, "Nom", 12),
                 InformationAffichage.Creer<Client>(x=>x.Prenom, "Prenom", 10),
                 InformationAffichage.Creer<Client>(x=>x.Email, "Email", 15),
-                InformationAffichage.Creer<Client>(x=>x.Telephone, "Telephone", 15),
-                InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date de Naissance", 10),
-                InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 10),
+                InformationAffichage.Creer<Client>(x=>x.Telephone, "Telephone", 12),
+                InformationAffichage.Creer<Client>(x=>x.DateNaissance, "Date Naissance", 12),
+                InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 15),
             };
 
         //private readonly List<Client> liste = new List<Client>();
