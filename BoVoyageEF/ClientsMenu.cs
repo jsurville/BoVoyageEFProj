@@ -23,12 +23,12 @@ namespace BoVoyageEF
 				InformationAffichage.Creer<Client>(x=>x.Adresse, "Adresse", 10),
 			};
 
-		private readonly List<Client> liste = new List<Client>();
+		//private readonly List<Client> liste = new List<Client>();
 
 		public ClientsMenu(Application application, string nomModule)
 			: base(application, nomModule)
 		{
-			this.liste = new ClientData().GetList();
+			//this.liste = new ClientData().GetList();
 			
 		}
 
@@ -48,8 +48,8 @@ namespace BoVoyageEF
 		private void AfficherClient()
 		{
 			ConsoleHelper.AfficherEntete("Afficher Clients");
-
-			ConsoleHelper.AfficherListe(this.liste, strategieAffichageClients);
+            
+			ConsoleHelper.AfficherListe(new ClientData().GetList(), strategieAffichageClients);
 		}
 
 		private void Nouveau()
@@ -67,7 +67,7 @@ namespace BoVoyageEF
 				Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
 			};
 
-			this.liste.Add(client);
+			//this.liste.Add(client);
 		}
 	}
 }

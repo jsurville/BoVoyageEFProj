@@ -25,7 +25,7 @@ namespace BoVoyageEF
         public VoyagesMenu(Application application, string nomModule)
             : base(application, nomModule)
         {
-            this.liste = new DestinationData().GetList();
+            //this.liste = new DestinationData().GetList();
         }
 
         protected override void InitialiserMenu(Menu menu)
