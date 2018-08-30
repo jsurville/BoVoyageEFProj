@@ -43,6 +43,7 @@
     <Compile Include="DAL\BoVoyage.cs" />
     <Compile Include="DAL\DestinationData.cs" />
     <Compile Include="DAL\ClientData.cs" />
+    <Compile Include="Entities\Assurance.cs" />
     <Compile Include="Entities\Destination.cs" />
     <Compile Include="Entities\Participant.cs" />
     <Compile Include="Entities\Client.cs" />
