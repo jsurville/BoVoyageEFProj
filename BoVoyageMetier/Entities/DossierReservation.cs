@@ -15,7 +15,6 @@ namespace BoVoyageMetier.Entities
         public decimal PrixParPersonne { get; set; }
         public EtatDossierReservation EtatDossier { get; set; }
         public RaisonAnnulationDossier RaisonAnnulationDossier { get; set; }
-        public int AssuranceId { get; set; }
         public int VoyageId { get; set; }
         public int ClientId { get; set; }
 
@@ -25,9 +24,6 @@ namespace BoVoyageMetier.Entities
 
         [ForeignKey("ClientId")]
         public virtual Client Client { get; set; }
-
-        [ForeignKey("AssuranceId")]
-        public virtual Assurance Assurance { get; set; }
 
         public virtual ICollection<Participant> Participants { get; set; }
     }
