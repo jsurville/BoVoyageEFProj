@@ -44,6 +44,7 @@
     <Compile Include="DAL\VoyageData.cs" />
     <Compile Include="DAL\DestinationData.cs" />
     <Compile Include="DAL\ClientData.cs" />
+    <Compile Include="Entities\AgenceVoyage.cs" />
     <Compile Include="Entities\Assurance.cs" />
     <Compile Include="Entities\Destination.cs" />
     <Compile Include="Entities\Participant.cs" />
