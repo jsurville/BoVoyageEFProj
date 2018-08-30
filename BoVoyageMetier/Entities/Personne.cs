@@ -10,9 +10,13 @@ namespace BoVoyageMetier.Entities
 	{
 		public int Id { get; set; }
 
+		public string Civilite { get; set; }
+
 		public string Nom { get; set; }
 
 		public string Prenom { get; set; }
+
+		public string Adresse { get; set; }
 
 		public DateTime? DateInscription { get; set; }
 
