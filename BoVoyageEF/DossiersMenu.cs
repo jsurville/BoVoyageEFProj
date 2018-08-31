@@ -212,7 +212,16 @@ namespace BoVoyageEF
 			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
 			var dossierReservationService = new DossierReservationService();
 			var dossierReservationId = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Cloturer :");
-			dossierReservationService.Cloturer(dossierReservationId);
+			var dossierReservation = dossierReservationService.Cloturer(dossierReservationId);
+			if (dossierReservation.EtatDossierReservation == EtatDossierReservation.Clos)
+			{
+				Console.WriteLine("Le Dossier no " + dossierReservationId + " a été cloturé. ");
+			}
+			else
+			{
+				Console.WriteLine("Le Dossier no " + dossierReservationId + " n'a pas pu être cloturé");
+			}
+			
 
 		}
 
