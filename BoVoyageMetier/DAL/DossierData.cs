@@ -16,5 +16,13 @@ namespace BoVoyageMetier.DAL
                 return contexte.DossierReservations.Include("Participants").ToList();          
             }                    
         }
+
+        public DossierReservation GetById(int dossierReservationId)
+        {
+            using (var contexte = new BoVoyage())
+            {
+                return contexte.DossierReservations.Include("Participants").Single(x=>x.Id==dossierReservationId);
+            }
+        }
     }
 }
