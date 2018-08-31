@@ -30,12 +30,12 @@ namespace BoVoyageMetier.Services
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
                     new DossierData().Update(dossierReservation);
                 }
-                else
+                /*else
                 {
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
                     dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.PaiementRefuse;
                     new DossierData().Update(dossierReservation);
-                }
+                }*/
 
 
             }
