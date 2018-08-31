@@ -26,8 +26,17 @@ namespace BoVoyageMetier.Services
 		public bool Supprimer(int voyageId)
 		{
 			var voyageData = new VoyageData();
+			var dossierData = new DossierData();
 			var voyage = voyageData.GetById(voyageId);
-			return voyageData.Effacer(voyage);
+			if(dossierData.GetList().Where(x=>x.VoyageId == voyageId).Count()>0)
+			{
+				return false;
+			}
+			else
+			{
+				return voyageData.Effacer(voyage);
+			}
+			
 			
 			
 		}
