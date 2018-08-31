@@ -14,15 +14,18 @@ namespace BoVoyageMetier.Entities
         public string NumeroCarteBancaire { get; set; }
         public decimal PrixParPersonne { get; set; }
         public decimal PrixTotal
-        {
+        {            
             get
             {
-                return 0;
-                //foreach (part)
-                // return this.Participants.Count * this.Voyage.PrixParPersonne * 1.2m;
+                decimal prixTotal =0;
+                foreach (var participant in this.Participants )
+                {
+                    prixTotal += (1 - (decimal)participant.Reduction) * PrixParPersonne;
+                }
+                return prixTotal * 1.1m;
             }
         }
-        public EtatDossierReservation EtatDossier { get; set; }
+        public EtatDossierReservation EtatDossierReservation { get; set; }
         public RaisonAnnulationDossier RaisonAnnulationDossier { get; set; }
         public int VoyageId { get; set; }
         public int ClientId { get; set; }
