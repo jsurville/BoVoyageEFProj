@@ -71,50 +71,41 @@ namespace BoVoyageMetier.Services
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
             if (dossierReservation != null &&
-                dossierReservation.EtatDossierReservation == EtatDossierReservation.Accepte)
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.Accepte
+                && DateTime.Now <= new VoyageData().GetById(dossierReservation.VoyageId).DateAller)
             {
-                var voyage = new VoyageData().GetById(dossierReservation.VoyageId);
-                if (voyage.PlacesDisponibles >= dossierReservation.Participants.Count)
-                {
-                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Accepte;
-                    new DossierData().Update(dossierReservation);
-                    voyage.PlacesDisponibles -= dossierReservation.Participants.Count;
-                    new VoyageData().Update(voyage);
-                }
-                else
-                {
-                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
-                    dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.PlacesInsuffisantes;
-                    new DossierData().Update(dossierReservation);
-                }
-            }
+                dossierReservation.EtatDossierReservation = EtatDossierReservation.Clos;
+                new DossierData().Update(dossierReservation);
+
+                new CarteBancaireService().PayerAgence(dossierReservation.PrixParPersonne * 0.9m);
+            }        
             return dossierReservation;
         }
 
 
-        public bool Annuler(int dossierReservationId, RaisonAnnulationDossier raisonAnnulationDossier)
-        {
-            bool succes = false;
-            var dossierReservation = new DossierData().GetById(dossierReservationId);
-            
-            if (dossierReservation != null
-                && dossierReservation.RaisonAnnulationDossier == 0
-                && dossierReservation.EtatDossierReservation != EtatDossierReservation.Refuse                
-                && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
-            {
-                dossierReservation.EtatDossierReservation = EtatDossierReservation.Annule;
-                dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
-                if (dossierReservation.Assurances.Where(x=>x.TypeAssurance==TypeAssurance.Annulation).Count()>0)
-                {
-                    var rembourser = new CarteBancaireService().Rembourser(dossierReservation.NumeroCarteBancaire,
-                        dossierReservation.PrixTotal);
-                }
-                new DossierData().Update(dossierReservation);
-                succes = true;
-            }
+    public bool Annuler(int dossierReservationId, RaisonAnnulationDossier raisonAnnulationDossier)
+    {
+        bool succes = false;
+        var dossierReservation = new DossierData().GetById(dossierReservationId);
 
-            
-            return succes;
+        if (dossierReservation != null
+            && dossierReservation.RaisonAnnulationDossier == 0
+            && dossierReservation.EtatDossierReservation != EtatDossierReservation.Refuse
+            && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
+        {
+            dossierReservation.EtatDossierReservation = EtatDossierReservation.Annule;
+            dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
+            if (dossierReservation.Assurances.Where(x => x.TypeAssurance == TypeAssurance.Annulation).Count() > 0)
+            {
+                var rembourser = new CarteBancaireService().Rembourser(dossierReservation.NumeroCarteBancaire,
+                    dossierReservation.PrixTotal);
+            }
+            new DossierData().Update(dossierReservation);
+            succes = true;
         }
+
+
+        return succes;
     }
+}
 }
