@@ -16,7 +16,7 @@ namespace BoVoyageEF
 			{
 				InformationAffichage.Creer<DossierReservation>(x=>x.Id, "Id", 3),
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No Unique", 5),
-				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossier, "Etat", 10),
+				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossierReservation, "Etat", 10),
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Num. CB", 15),
 			    InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "Prix TTC", 10),
 				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "ID Client", 4),
