@@ -154,8 +154,8 @@ namespace BoVoyageEF
 				Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
 			};
 
-			var dossierReservationService = new DossierReservationService();
-			dossierReservationService.AjoutParticipant(participant);
+			var participantService = new ParticipantService();
+			participantService.AjoutParticipant(participant);
 		}
 
 

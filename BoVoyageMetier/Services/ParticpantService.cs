@@ -10,10 +10,10 @@ namespace BoVoyageMetier.Services
 {
 	public class ParticipantService
 	{
-		public Participant Ajout(Participant participant)
+		public Participant AjoutParticipant(Participant participant)
 		{
 			var participantData = new ParticipantData();
-			participantData.Ajout(participant);
+			participantData.Ajouter(participant);
 			return participant;
 		}
 

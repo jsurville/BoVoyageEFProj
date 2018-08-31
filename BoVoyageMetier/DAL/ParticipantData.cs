@@ -17,7 +17,7 @@ namespace BoVoyageMetier.DAL
 			}
 			
         }
-		public Participant Ajout(Participant participant)
+		public Participant Ajouter(Participant participant)
 		{
 			using (var contexte = new BoVoyage())
 			{
