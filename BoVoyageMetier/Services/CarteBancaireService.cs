@@ -19,5 +19,10 @@ namespace BoVoyageMetier.Services
                 return false;
             }
         }
+
+        public bool Rembourser(string numeroCarteBancaire, decimal prixTotal)
+        {
+            return true ;
+        }
     }
 }
