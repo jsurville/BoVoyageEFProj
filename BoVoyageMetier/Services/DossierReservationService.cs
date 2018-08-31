@@ -33,7 +33,7 @@ namespace BoVoyageMetier.Services
                 else
                 {
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
-                    dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
+                    dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.PaiementRefuse;
                     new DossierData().Update(dossierReservation);
                 }
 
@@ -68,10 +68,14 @@ namespace BoVoyageMetier.Services
         public bool Annuler(int dossierReservationId, RaisonAnnulationDossier raisonAnnulationDossier)
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
-            if (dossierReservation != null)
+            if (dossierReservation != null 
+                && dossierReservation.RaisonAnnulationDossier==RaisonAnnulationDossier.Client
+                && dossierReservation.EtatDossierReservation== EtatDossierReservation.EnAttente)
 
             {
-                return new DossierData().Delete(dossierReservation);
+                dossierReservation.EtatDossierReservation = EtatDossierReservation.Clos;
+                new DossierData().Update(dossierReservation);
+                return true; 
             }
             else
                 return false;
