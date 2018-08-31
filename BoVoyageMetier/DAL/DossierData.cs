@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoVoyageMetier.Entities;
+using System.Data.Entity;
 
 namespace BoVoyageMetier.DAL
 {
@@ -30,6 +31,17 @@ namespace BoVoyageMetier.DAL
 			using (var contexte = new BoVoyage())
 			{
 				contexte.DossierReservations.Add(dossierReservation);
+				contexte.SaveChanges();
+			}
+			return dossierReservation;
+		}
+
+		public DossierReservation Update(DossierReservation dossierReservation)
+		{
+			using (var contexte = new BoVoyage())
+			{
+				contexte.DossierReservations.Attach(dossierReservation);
+				contexte.Entry(dossierReservation).State = EntityState.Modified;
 				contexte.SaveChanges();
 			}
 			return dossierReservation;
