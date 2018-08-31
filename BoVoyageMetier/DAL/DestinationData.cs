@@ -19,13 +19,19 @@ namespace BoVoyageMetier.DAL
 
         public Destination Ajout(Destination destination)
         {
-            using (var contexte = new BoVoyage())
+            try
             {
-                contexte.Destinations.Add(destination);
-                contexte.SaveChanges();
+                using (var contexte = new BoVoyage())
+                {
+                    contexte.Destinations.Add(destination);
+                    contexte.SaveChanges();
+                }
+                return destination;
             }
-            return destination;
-
+            catch
+            {
+                return null;
+            }
         }
     }
 }

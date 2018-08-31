@@ -18,6 +18,11 @@ namespace BoVoyageMetier.Services
         public DossierReservation ValiderSolvabilite (int dossierReservationId)
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
+            if (dossierReservation !=null)
+            {
+                var carteBancaireServie = new CarteBancaireService();
+                
+            }
             return dossierReservation;
         }
     }
