@@ -13,9 +13,21 @@ namespace BoVoyageMetier.Services
 		public Participant AjoutParticipant(Participant participant)
 		{
 			var participantData = new ParticipantData();
-			participantData.Ajouter(participant);
+			if (participantData.GetList().Where(x => x.DossierReservationId == participant.DossierReservationId).Count() < 9)
+			{
+				participantData.Ajouter(participant);
+			}
+			else
+			{
+				Console.WriteLine("Le nombre Max de place a été atteint");
+			}
 			return participant;
 		}
 
+		//public int GetNombreParticipantParDossierId()
+		//{
+
+		//	return;
+		//}
 	}
 }

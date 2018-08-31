@@ -18,8 +18,21 @@ namespace BoVoyageMetier.DAL
        
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Assurance> Assurances { get; set; }
-        
-       // public DbSet<AssuranceDossierReservation> AssuranceDossierReservations { get; set; }
-        
-    }
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+			modelBuilder.Entity<DossierReservation>()
+				.HasMany(x => x.Assurances)
+				.WithMany()
+				.Map(x =>
+				{
+					x.MapRightKey("AssuranceId");
+					x.MapLeftKey("DossierReservationId");
+					x.ToTable("DossierReservationAssurances");
+				}
+				);
+
+		}
+
+	}
 }

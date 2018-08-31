@@ -11,6 +11,8 @@ namespace BoVoyageMetier.Entities
         public int Id { get; set; }
         public decimal Montant { get; set; }
         public TypeAssurance TypeAssurance { get; set; }
+		//public virtual ICollection<DossierReservation> DossierReservations { get; set; }
     }
     public enum TypeAssurance { Annulation = 1}
+
 }

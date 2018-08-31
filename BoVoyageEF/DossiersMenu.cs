@@ -185,6 +185,7 @@ namespace BoVoyageEF
 				var succes = dossierReservationService.Annuler(dossierReservation.Id, dossierReservation.RaisonAnnulationDossier);
 				if (succes)
 				{
+
 					Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
 				}
 				else
@@ -205,7 +206,20 @@ namespace BoVoyageEF
 			ConsoleHelper.AfficherEntete("Ajout d'une Assurance");
 
 			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			
+			
+			var dossierReservationId = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à attacher :");
+			var assuranceId = ConsoleSaisie.SaisirEntierObligatoire("Numero de l'Assurance à ajouter (1 par défaut):");
 
+			var succes = new AssuranceService().Ajout(assuranceId, dossierReservationId);
+			if (succes == true)
+			{
+				Console.WriteLine("L'Assurance annulation a été ajoutée au dossier no :" + dossierReservationId);
+			}
+			else
+			{
+				Console.WriteLine("Impossible d'ajouter une assurance annulation");
+			}
 		}
 
 		private void AfficherParticipant()
