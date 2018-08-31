@@ -100,6 +100,7 @@ namespace BoVoyageEF
 		{
 			ConsoleHelper.AfficherEntete("Nouveau Dossier");
 			Console.WriteLine("\nLISTE DES VOYAGES DISPONIBLES\n");
+			OutilsConsole.Commentaire("---------- ( Le Prix/Pers est le Prix Agence indicatif) -------\n ");
 			ConsoleHelper.AfficherListe(new VoyageData().GetList(), VoyagesMenu.strategieAffichageVoyages);
 			Console.WriteLine("\nLISTE DES CLIENTS \n");
 			ConsoleHelper.AfficherListe(new ClientData().GetList(), ClientsMenu.strategieAffichageClients);
