@@ -56,5 +56,16 @@ namespace BoVoyageMetier.DAL
 			}
 			return true;
 		}
-	}
+
+        public Voyage Update(Voyage voyage)
+        {
+            using (var contexte = new BoVoyage())
+            {
+                contexte.Voyages.Attach(voyage);
+                contexte.Entry(voyage).State = EntityState.Modified;
+                contexte.SaveChanges();
+            }
+            return voyage;
+        }
+    }
 }

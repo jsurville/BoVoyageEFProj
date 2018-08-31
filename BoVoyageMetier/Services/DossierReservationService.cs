@@ -30,6 +30,13 @@ namespace BoVoyageMetier.Services
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
                     new DossierData().Update(dossierReservation);
                 }
+                else
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
+                    dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
+                    new DossierData().Update(dossierReservation);
+                }
+                   
 
             }
             return dossierReservation;
@@ -39,13 +46,20 @@ namespace BoVoyageMetier.Services
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
             if (dossierReservation != null &&
-                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente)
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours)
             {
-                var carteBancaireServie = new CarteBancaireService();
-                if (carteBancaireServie.ValiderSolvabilite(dossierReservation.NumeroCarteBancaire,
-                    dossierReservation.PrixTotal))
+                if (dossierReservation.Voyage.PlacesDisponibles >= dossierReservation.Participants.Count)
                 {
-                    dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Accepte;
+                    new DossierData().Update(dossierReservation);
+                    dossierReservation.Voyage.PlacesDisponibles -= dossierReservation.Participants.Count;
+                    new VoyageData().Update(dossierReservation.Voyage);
+                }
+                else
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
+                    dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.PlacesInsuffisantes;
+                    new DossierData().Update(dossierReservation);
                 }
             }
             return dossierReservation;
@@ -54,14 +68,15 @@ namespace BoVoyageMetier.Services
         public bool Annuler(int dossierReservationId)
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
-            if (dossierReservation != null &&
-                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente)
+            if (dossierReservation != null)
+
             {
-                var carteBancaireServie = new CarteBancaireService();
-                if (carteBancaireServie.ValiderSolvabilite(dossierReservation.NumeroCarteBancaire,
-                    dossierReservation.PrixTotal))
+                switch (dossierReservation.EtatDossierReservation)
                 {
-                    dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
+                    case EtatDossierReservation.EnAttente:
+                        dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
+                        break;
+                        //case EtatDossierReservation.EnCours:
                 }
             }
             return true;
