@@ -12,7 +12,9 @@ namespace BoVoyageMetier.Services
     {
         public DossierReservation Ajout(DossierReservation dossierReservation)
         {
-            return dossierReservation;
+			var dossierData = new DossierData();
+			dossierData.Ajouter(dossierReservation);
+			return dossierReservation;
         }
 
         public DossierReservation ValiderSolvabilite (int dossierReservationId)
