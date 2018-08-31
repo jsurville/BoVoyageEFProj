@@ -27,6 +27,10 @@ namespace BoVoyageMetier.Entities
 
         [ForeignKey("DossierReservationId")]
         public virtual DossierReservation DossierReservation { get; set; }
+        public override string ToString()
+        {
+            return Civilite +" "+ Nom +" "+ Prenom;
+        }
     }
 }
 
