@@ -50,5 +50,21 @@ namespace BoVoyageMetier.Services
             }
             return dossierReservation;
         }
+
+        public bool Annuler(int dossierReservationId)
+        {
+            var dossierReservation = new DossierData().GetById(dossierReservationId);
+            if (dossierReservation != null &&
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente)
+            {
+                var carteBancaireServie = new CarteBancaireService();
+                if (carteBancaireServie.ValiderSolvabilite(dossierReservation.NumeroCarteBancaire,
+                    dossierReservation.PrixTotal))
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
+                }
+            }
+            return true;
+        }
     }
 }
