@@ -78,7 +78,7 @@ namespace BoVoyageEF
         internal void AfficherVoyage()
         {
             ConsoleHelper.AfficherEntete("Afficher les Voyages");
-
+			OutilsConsole.Commentaire("Le Prix/Pers est le Prix Agence indicatif\n ");
             ConsoleHelper.AfficherListe(new VoyageData().GetList(), strategieAffichageVoyages);
         }
 

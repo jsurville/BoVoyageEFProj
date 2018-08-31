@@ -13,6 +13,12 @@ namespace BoVoyageEF
 			Console.WriteLine(new string('=', Console.WindowWidth));
 		}
 
+		public static void Commentaire(string text)
+		{
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.WriteLine(text);
+			Console.ResetColor();
+		}
 		public static void CentrerTexte(string texte)
 		{
 			int winWidth = (Console.WindowWidth / 2 - 15);
