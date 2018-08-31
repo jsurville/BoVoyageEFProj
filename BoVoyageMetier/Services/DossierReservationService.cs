@@ -68,18 +68,22 @@ namespace BoVoyageMetier.Services
 
         public bool Annuler(int dossierReservationId, RaisonAnnulationDossier raisonAnnulationDossier)
         {
+            bool succes = false;
             var dossierReservation = new DossierData().GetById(dossierReservationId);
-            if (dossierReservation != null 
-                && dossierReservation.RaisonAnnulationDossier==RaisonAnnulationDossier.Client
-                && dossierReservation.EtatDossierReservation== EtatDossierReservation.EnAttente)
+            if (dossierReservation != null
+                && (dossierReservation.RaisonAnnulationDossier == 0 )
 
+                && (dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente
+                || dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours )
+                && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
             {
                 dossierReservation.EtatDossierReservation = EtatDossierReservation.Clos;
+                dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
                 new DossierData().Update(dossierReservation);
-                return true; 
+                succes= true;
             }
-            else
-                return false;
+
+            return succes;
         }
     }
 }
