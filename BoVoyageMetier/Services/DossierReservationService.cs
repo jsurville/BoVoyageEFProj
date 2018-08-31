@@ -48,7 +48,8 @@ namespace BoVoyageMetier.Services
             if (dossierReservation != null &&
                 dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours)
             {
-                if (dossierReservation.Voyage.PlacesDisponibles >= dossierReservation.Participants.Count)
+                if (new VoyageData().GetById(dossierReservation.VoyageId)
+                    .PlacesDisponibles >= dossierReservation.Participants.Count)
                 {
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.Accepte;
                     new DossierData().Update(dossierReservation);
