@@ -22,7 +22,8 @@ namespace BoVoyageMetier.DAL
 		{
 			using (var contexte = new BoVoyage())
 			{
-				return contexte.DossierReservations.Include("Participants").Single(x => x.Id == dossierReservationId);
+				return contexte.DossierReservations.Include("Participants")
+                    .Include("Assurances").Include("Voyage").Single(x => x.Id == dossierReservationId);
 			}
 		}
 
