@@ -115,22 +115,47 @@ namespace BoVoyageEF
 				Console.WriteLine("Impossible de créer le dossier");
 			}
 		}
+
 		private void ValiderDossier()
-		{
+		{ // en attente à en cours
 			ConsoleHelper.AfficherEntete("Validation d'un Dossier");
 
-			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			var dossierReservationService = new DossierReservationService();
+			var dossierReservation = new DossierReservation();
+			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Valider :");
+			dossierReservation=dossierReservationService.ValiderSolvabilite(dossierReservation.Id);
+			if (dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours && dossierReservation !=null)
+			{
+				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été Validé ");
+			}
+			else
+			{
+				Console.WriteLine("Validation impossible pour le dossier numero " + dossierReservation.Id);
+			}
 		}
 
 		private void AccepterDossier()
-		{
+		{ // en cours à accepté
 			ConsoleHelper.AfficherEntete("Acceptation d'un Dossier");
-
-			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			var dossierReservationService = new DossierReservationService();
+			var dossierReservation = new DossierReservation();
+			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Accepter :");
+			dossierReservation = dossierReservationService.ValiderSolvabilite(dossierReservation.Id);
+			if (dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours && dossierReservation != null)
+			{
+				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été Validé ");
+			}
+			else
+			{
+				Console.WriteLine("Validation impossible pour le dossier numero " + dossierReservation.Id);
+			}
 		}
 
 		private void AnnulerDossier()
-		{
+		{  // en attente ou en cours à refusé
 			ConsoleHelper.AfficherEntete("Annulation d'un Dossier");
 
 			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
@@ -149,6 +174,7 @@ namespace BoVoyageEF
 
 			ConsoleHelper.AfficherListe(new ParticipantData().GetList(), strategieAffichageParticipants);
 		}
+
 		private void EnregistrerParticipant()
 		{
 			ConsoleHelper.AfficherEntete("Enregistrer un Participant");
