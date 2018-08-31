@@ -46,15 +46,15 @@ namespace BoVoyageEF
 
 		protected override void InitialiserMenu(Menu menu)
 		{
-			menu.AjouterElement(new ElementMenu("1", "Liste des Dossiers")
+			menu.AjouterElement(new ElementMenu("1", "Liste des DOSSIERS")
 			{
 				FonctionAExecuter = this.AfficherDossier
 			});
-			menu.AjouterElement(new ElementMenu("2", "Créer un Nouveau Dossier")
+			menu.AjouterElement(new ElementMenu("2", "Créer un Nouveau DOSSIER")
 			{
 				FonctionAExecuter = this.NouveauDossier
 			});
-			menu.AjouterElement(new ElementMenu("3", "Valider un Dossier")
+			menu.AjouterElement(new ElementMenu("3", "Valider un dossier")
 			{
 				FonctionAExecuter = this.ValiderDossier
 			});
@@ -66,16 +66,21 @@ namespace BoVoyageEF
 			{
 				FonctionAExecuter = this.AnnulerDossier
 			});
-			menu.AjouterElement(new ElementMenu("6", "Ajouter une Assurance")
+			menu.AjouterElement(new ElementMenu("6", "Cloturer un Dossier")
+			{
+				FonctionAExecuter = this.CloturerDossier
+			});
+
+			menu.AjouterElement(new ElementMenu("7", "Ajouter une ASSURANCE")
 			{
 				FonctionAExecuter = this.AjouterAssurance
 			});
-			menu.AjouterElement(new ElementMenu("7", "Liste des Participants")
+			menu.AjouterElement(new ElementMenu("8", "Liste des PARTICIPANTS")
 			{
 				FonctionAExecuter = this.AfficherParticipant
 			});
 
-			menu.AjouterElement(new ElementMenu("8", "Enregistrer des Participants")
+			menu.AjouterElement(new ElementMenu("9", "Enregistrer des Participants")
 			{
 				FonctionAExecuter = this.EnregistrerParticipant
 			});
@@ -199,6 +204,16 @@ namespace BoVoyageEF
 			}
 
 			
+		}
+
+		private void CloturerDossier()
+		{
+			ConsoleHelper.AfficherEntete("Cloture d'un Dossier");
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			var dossierReservationService = new DossierReservationService();
+			var dossierReservationId = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Cloturer :");
+			dossierReservationService.Cloturer(dossierReservationId);
+
 		}
 
 		private void AjouterAssurance()
