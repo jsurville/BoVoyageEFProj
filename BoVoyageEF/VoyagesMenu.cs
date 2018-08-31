@@ -101,14 +101,17 @@ namespace BoVoyageEF
         {
             ConsoleHelper.AfficherEntete("Nouveau Voyage");
 
-            var voyage = new Voyage
+			ConsoleHelper.AfficherListe(new DestinationData().GetList(), strategieAffichageDestination);
+
+			var voyage = new Voyage
             {
+
                 DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
                 DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
                 DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
                 PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places max disponibles ?"),
                 PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix/pers. ?"),
-				AgenceVoyageId = ConsoleSaisie.SaisirEntierObligatoire("Id de l'Agence de Voyage ?")
+				AgenceVoyageId = ConsoleSaisie.SaisirEntierObligatoire("Id de l'Agence de Voyage (par défaut 1) ?")
 			};
             var voyageService = new VoyageService();
             voyageService.Ajout(voyage);
