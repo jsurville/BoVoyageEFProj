@@ -14,15 +14,23 @@ namespace BoVoyageMetier.Entities
         public string NumeroCarteBancaire { get; set; }
         public decimal PrixParPersonne { get; set; }
         public decimal PrixTotal
-        {            
+        {
             get
             {
-                decimal prixTotal =0;
-                foreach (var participant in this.Participants )
+                decimal prixTotal = 0;
+                foreach (var participant in this.Participants)
                 {
                     prixTotal += (1 - (decimal)participant.Reduction) * PrixParPersonne;
                 }
-                return prixTotal * 1.1m;
+
+                foreach (var assurance in this.Assurances)
+                {
+                    if (assurance.TypeAssurance == TypeAssurance.Annulation)
+                    {
+                        prixTotal += (decimal)assurance.Montant;
+                    }
+                }
+                return prixTotal;
             }
         }
         public EtatDossierReservation EtatDossierReservation { get; set; }
@@ -42,6 +50,6 @@ namespace BoVoyageMetier.Entities
     }
 
 
-    public enum EtatDossierReservation { EnAttente, EnCours, Refuse, Accepte, Clos, Annule}
-    public enum RaisonAnnulationDossier { Client = 1, PlacesInsuffisantes = 2, PaiementRefuse =3}
+    public enum EtatDossierReservation { EnAttente, EnCours, Refuse, Accepte, Clos, Annule }
+    public enum RaisonAnnulationDossier { Client = 1, PlacesInsuffisantes = 2, PaiementRefuse = 3 }
 }

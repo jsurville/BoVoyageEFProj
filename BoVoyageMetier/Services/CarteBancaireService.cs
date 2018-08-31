@@ -24,5 +24,10 @@ namespace BoVoyageMetier.Services
         {
             return true ;
         }
+
+        public bool PayerAgence(object p)
+        {
+            return true ;
+        }
     }
 }
