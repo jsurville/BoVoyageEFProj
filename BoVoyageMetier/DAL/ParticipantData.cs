@@ -25,7 +25,6 @@ namespace BoVoyageMetier.DAL
 				contexte.SaveChanges();
 			}
 			return participant;
-
 		}
 	}
 }

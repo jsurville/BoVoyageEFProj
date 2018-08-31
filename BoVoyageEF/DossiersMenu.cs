@@ -30,7 +30,7 @@ namespace BoVoyageEF
 			new List<InformationAffichage>
 			{
 				InformationAffichage.Creer<Participant>(x=>x.Id, "Id", 3),
-				InformationAffichage.Creer<Participant>(x=>x.DossierReservationId, "No Dossier", 4),
+				InformationAffichage.Creer<Participant>(x=>x.DossierReservationId, "No Dossier", 10),
 				InformationAffichage.Creer<Participant>(x=>x.ToString(), "Participant", 15),								   
 				InformationAffichage.Creer<Participant>(x=>x.Telephone, "Telephone", 12),
 				InformationAffichage.Creer<Participant>(x=>x.DateNaissance, "Date Naissance", 12),
