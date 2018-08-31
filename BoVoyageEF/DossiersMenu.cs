@@ -158,7 +158,19 @@ namespace BoVoyageEF
 		{  // en attente ou en cours à refusé
 			ConsoleHelper.AfficherEntete("Annulation d'un Dossier");
 
-			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			var dossierReservationService = new DossierReservationService();
+			var dossierReservation = new DossierReservation();
+			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Annuler :");
+			dossierReservation = dossierReservationService.Annuler(dossierReservation.Id);
+			if (dossierReservation.EtatDossierReservation == EtatDossierReservation.Annule && dossierReservation != null)
+			{
+				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
+			}
+			else
+			{
+				Console.WriteLine("Impossible d'annuler le dossier numero " + dossierReservation.Id);
+			}
 		}
 
 		private void CloturerDossier()
