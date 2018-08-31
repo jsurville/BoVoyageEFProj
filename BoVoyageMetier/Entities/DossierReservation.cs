@@ -42,6 +42,6 @@ namespace BoVoyageMetier.Entities
     }
 
 
-    public enum EtatDossierReservation { EnAttente, EnCours, Refuse, Accepte, Clos, Annule, InSolvable }
+    public enum EtatDossierReservation { EnAttente, EnCours, Refuse, Accepte, Clos, Annule}
     public enum RaisonAnnulationDossier { Client = 1, PlacesInsuffisantes = 2, PaiementRefuse =3}
 }

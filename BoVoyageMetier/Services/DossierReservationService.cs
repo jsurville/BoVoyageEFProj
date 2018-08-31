@@ -83,6 +83,34 @@ namespace BoVoyageMetier.Services
                 succes= true;
             }
 
+            if (dossierReservation != null
+                && dossierReservation.RaisonAnnulationDossier == 0
+
+                && dossierReservation.EtatDossierReservation != EtatDossierReservation.Refuse
+                
+                && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
+            {
+                dossierReservation.EtatDossierReservation = EtatDossierReservation.Annule;
+                dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
+                if (dossierReservation.Assurances.Where(x=>x.TypeAssurance==TypeAssurance.Annulation).Count()>0)
+                {
+
+                }
+                new DossierData().Update(dossierReservation);
+                succes = true;
+            }
+
+            if (dossierReservation != null
+                && dossierReservation.RaisonAnnulationDossier == 0
+                && dossierReservation.EtatDossierReservation == EtatDossierReservation.Accepte                
+                && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
+            {
+                dossierReservation.EtatDossierReservation = EtatDossierReservation.Annule;
+                dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
+                new DossierData().Update(dossierReservation);
+                succes = true;
+            }
+
             return succes;
         }
     }
