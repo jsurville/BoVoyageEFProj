@@ -115,6 +115,14 @@ namespace BoVoyageEF
 			};
             var voyageService = new VoyageService();
             voyageService.Ajout(voyage);
+			if (voyage.Id!=0)
+			{
+				Console.WriteLine("Le Voyage a été enregistré avec succès");
+			}
+			else
+			{
+				Console.WriteLine("Le Voyage n'a pas pu être créé (Erreur de date ou de destination ...)");
+			}
         }
 
         private void SupprimerVoyage()
