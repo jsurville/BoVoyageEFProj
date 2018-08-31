@@ -15,12 +15,12 @@ namespace BoVoyageEF
 			new List<InformationAffichage>
 			{
 				InformationAffichage.Creer<DossierReservation>(x=>x.Id, "Id", 3),
-				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No Unique", 4),
+				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No Unique", 5),
 				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossier, "Etat", 10),
-				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Prenom", 10),
-			   // InformationAffichage.Creer<DossierReservation>(x=>x.AnnulationAssurance, "Assurance", 10),
-				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "ID Client", 15),
-				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "Id Voyage", 15)
+				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Num. CB", 15),
+			    InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "Prix TTC", 10),
+				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "ID Client", 4),
+				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "Id Voyage", 4)
 			};
 
 		private static readonly List<InformationAffichage> strategieAffichageParticipants
