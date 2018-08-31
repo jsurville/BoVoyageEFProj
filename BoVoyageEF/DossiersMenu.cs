@@ -16,8 +16,8 @@ namespace BoVoyageEF
 			{
 				InformationAffichage.Creer<DossierReservation>(x=>x.Id, "Id", 3),
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No Unique", 5),
-				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossierReservation, "Etat", 10),
-				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Num. CB", 15),
+				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossierReservation, "Etat", 8),
+				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Num. CB", 13),
 			    InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "Prix TTC", 10),
 				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "ID Client", 4),
 				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "Id Voyage", 4)
@@ -134,6 +134,10 @@ namespace BoVoyageEF
 			{
 				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été Validé ");
 			}
+			else if(dossierReservation.EtatDossierReservation == EtatDossierReservation.Refuse && dossierReservation != null)
+			{
+				Console.WriteLine("Paiement refusé ...");
+			}
 			else
 			{
 				Console.WriteLine("Validation impossible pour le dossier numero " + dossierReservation.Id);
@@ -153,6 +157,11 @@ namespace BoVoyageEF
 			{
 				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été accepté ");
 			}
+			else if (dossierReservation.EtatDossierReservation == EtatDossierReservation.Refuse && dossierReservation != null)
+			{
+				Console.WriteLine("Nombre de places disponibles insuffisant"); 
+			}
+
 			else
 			{
 				Console.WriteLine("Impossible d'accepter le dossier numero " + dossierReservation.Id);
@@ -167,15 +176,28 @@ namespace BoVoyageEF
 			var dossierReservationService = new DossierReservationService();
 			var dossierReservation = new DossierReservation();
 			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Annuler :");
-			var succes = dossierReservationService.Annuler(dossierReservation.Id);
-			if (succes )
-			{
-				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
+			
+			var raisonAnnulation=ConsoleSaisie.SaisirEntierObligatoire("Raison de l'annulation" +
+				"\n 1. Cause Client \n 2. Nombre de places inssufisant : ");
+			if (raisonAnnulation >= 1 && raisonAnnulation <= 2)
+			{ 
+				dossierReservation.RaisonAnnulationDossier = (RaisonAnnulationDossier)raisonAnnulation; 
+				var succes = dossierReservationService.Annuler(dossierReservation.Id, dossierReservation.RaisonAnnulationDossier);
+				if (succes)
+				{
+					Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
+				}
+				else
+				{
+					Console.WriteLine("Impossible d'annuler le dossier numero " + dossierReservation.Id);
+				}
 			}
 			else
 			{
-				Console.WriteLine("Impossible d'annuler le dossier numero " + dossierReservation.Id);
+				Console.WriteLine("Choix non valide...");
 			}
+
+			
 		}
 
 		private void AjouterAssurance()
