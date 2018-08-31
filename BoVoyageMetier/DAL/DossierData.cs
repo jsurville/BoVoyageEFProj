@@ -24,6 +24,16 @@ namespace BoVoyageMetier.DAL
 				return contexte.DossierReservations.Include("Participants").Single(x => x.Id == dossierReservationId);
 			}
 		}
+
+		public DossierReservation Ajouter(DossierReservation dossierReservation)
+		{
+			using (var contexte = new BoVoyage())
+			{
+				contexte.DossierReservations.Add(dossierReservation);
+				contexte.SaveChanges();
+			}
+			return dossierReservation;
+		}
 	}
 }
 
