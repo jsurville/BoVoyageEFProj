@@ -12,18 +12,39 @@ namespace BoVoyageMetier.Services
     {
         public DossierReservation Ajout(DossierReservation dossierReservation)
         {
-			var dossierData = new DossierData();
-			dossierData.Ajouter(dossierReservation);
-			return dossierReservation;
+            var dossierData = new DossierData();
+            dossierData.Ajouter(dossierReservation);
+            return dossierReservation;
         }
 
-        public DossierReservation ValiderSolvabilite (int dossierReservationId)
+        public DossierReservation ValiderSolvabilite(int dossierReservationId)
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
-            if (dossierReservation !=null)
+            if (dossierReservation != null &&
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente)
             {
                 var carteBancaireServie = new CarteBancaireService();
-                
+                if (carteBancaireServie.ValiderSolvabilite(dossierReservation.NumeroCarteBancaire,
+                    dossierReservation.PrixTotal))
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
+                }
+            }
+            return dossierReservation;
+        }
+
+        public DossierReservation Accepter(int dossierReservationId)
+        {
+            var dossierReservation = new DossierData().GetById(dossierReservationId);
+            if (dossierReservation != null &&
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente)
+            {
+                var carteBancaireServie = new CarteBancaireService();
+                if (carteBancaireServie.ValiderSolvabilite(dossierReservation.NumeroCarteBancaire,
+                    dossierReservation.PrixTotal))
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
+                }
             }
             return dossierReservation;
         }

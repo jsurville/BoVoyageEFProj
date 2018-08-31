@@ -8,11 +8,11 @@ namespace BoVoyageMetier.Services
 {
     class CarteBancaireService
     {
-        public bool ValiderSolvabilite(string numeroCarteBancaire, int prixTotal)
+        public bool ValiderSolvabilite(string numeroCarteBancaire, decimal prixTotal)
         {
             try
             {
-                return ((int.Parse(numeroCarteBancaire) - prixTotal) % 2) == 0;
+                return ((int.Parse(numeroCarteBancaire) -(int) prixTotal) % 2) == 0;
             }
             catch
             {
