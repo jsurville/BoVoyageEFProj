@@ -65,20 +65,16 @@ namespace BoVoyageMetier.Services
             return dossierReservation;
         }
 
-        public bool Annuler(int dossierReservationId)
+        public bool Annuler(int dossierReservationId, RaisonAnnulationDossier raisonAnnulationDossier)
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
             if (dossierReservation != null)
 
             {
-                switch (dossierReservation.EtatDossierReservation)
-                {
-                    case EtatDossierReservation.EnAttente:
-                        dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
-                        break;
-                        //case EtatDossierReservation.EnCours:
-                }
+                return false;
+                //return new DossierData().Delete(dossierReservation);
             }
+            else
             return true;
         }
     }
