@@ -46,6 +46,26 @@ namespace BoVoyageMetier.DAL
 			}
 			return dossierReservation;
 		}
-	}
+
+        public bool Delete(DossierReservation dossierReservation)
+        {
+            try
+            {
+                using (var contexte = new BoVoyage())
+                {
+                    contexte.DossierReservations.Attach(dossierReservation);
+                    contexte.DossierReservations.Remove(dossierReservation);
+                    contexte.SaveChanges();
+                    return true;
+                }
+
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+    }
 }
 

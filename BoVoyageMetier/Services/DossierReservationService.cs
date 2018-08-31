@@ -36,7 +36,7 @@ namespace BoVoyageMetier.Services
                     dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
                     new DossierData().Update(dossierReservation);
                 }
-                   
+
 
             }
             return dossierReservation;
@@ -71,11 +71,10 @@ namespace BoVoyageMetier.Services
             if (dossierReservation != null)
 
             {
-                return false;
-                //return new DossierData().Delete(dossierReservation);
+                return new DossierData().Delete(dossierReservation);
             }
             else
-            return true;
+                return false;
         }
     }
 }
