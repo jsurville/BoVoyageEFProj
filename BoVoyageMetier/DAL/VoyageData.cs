@@ -8,54 +8,51 @@ using System.Data.Entity;
 
 namespace BoVoyageMetier.DAL
 {
-	public class VoyageData
-	{
-		public List<Voyage> GetList()
-		{
+    public class VoyageData
+    {
+        public List<Voyage> GetList()
+        {
             using (var contexte = new BoVoyage())
             {
                 return contexte.Voyages.Include("Destination").ToList();
-            
             }
-           
-		
-		}
+        }
 
-		public Voyage Ajout(Voyage voyage)
-		{
-			using (var contexte = new BoVoyage())
-			{
-				contexte.Voyages.Add(voyage);
-				contexte.SaveChanges();
-			}
-			return voyage;
-		}
+        public Voyage Ajout(Voyage voyage)
+        {
+            using (var contexte = new BoVoyage())
+            {
+                contexte.Voyages.Add(voyage);
+                contexte.SaveChanges();
+            }
+            return voyage;
+        }
 
-		public Voyage GetById(int voyageId)
-		{
-			try
-			{
-				using (var contexte = new BoVoyage())
-				{
-					return contexte.Voyages.Single(x => x.Id == voyageId);
-				}
-			}
-			catch
-			{
-				return null;
-			}
-		}
+        public Voyage GetById(int voyageId)
+        {
+            try
+            {
+                using (var contexte = new BoVoyage())
+                {
+                    return contexte.Voyages.Single(x => x.Id == voyageId);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-		public bool Effacer(Voyage voyage)
-		{
-			using (var contexte = new BoVoyage())
-			{
-				contexte.Voyages.Attach(voyage);
-				contexte.Voyages.Remove(voyage);
-				contexte.SaveChanges();
-			}
-			return true;
-		}
+        public bool Effacer(Voyage voyage)
+        {
+            using (var contexte = new BoVoyage())
+            {
+                contexte.Voyages.Attach(voyage);
+                contexte.Voyages.Remove(voyage);
+                contexte.SaveChanges();
+            }
+            return true;
+        }
 
         public Voyage Update(Voyage voyage)
         {
