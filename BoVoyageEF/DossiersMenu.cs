@@ -95,15 +95,18 @@ namespace BoVoyageEF
 		{
 			ConsoleHelper.AfficherEntete("Nouveau Dossier");
 
-			var dossierVoyage = new DossierReservation
+			var dossierReservation = new DossierReservation
 			{
 				NumeroUnique = ConsoleSaisie.SaisirEntierObligatoire("Entrez le Numero Unique :"),
 				ClientId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id Client :"),
 				VoyageId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id du Voyage :"),
-				//DateNaissance = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
+				PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix par Personne :"),
+				NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Numero CB :")
+				
 			};
-
-		   // this.liste.Add(client);
+			var dossierReservationService = new DossierReservationService();
+			dossierReservationService.Ajout(dossierReservation);
+		   
 		}
 		private void ValiderDossier()
 		{

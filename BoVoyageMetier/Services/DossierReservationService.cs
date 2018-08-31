@@ -10,10 +10,10 @@ namespace BoVoyageMetier.Services
 {
     public class DossierReservationService
     {
-		public DossierReservation Ajout(DossierReservation dossierReservation)
-		{
+        public DossierReservation Ajout(DossierReservation dossierReservation)
+        {
             return dossierReservation;
-		}
+        }
 
         public DossierReservation ValiderSolvabilite (int dossierReservationId)
         {
