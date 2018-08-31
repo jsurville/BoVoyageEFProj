@@ -22,7 +22,7 @@ namespace BoVoyageMetier.Entities
                 {
                     prixTotal += (1 - (decimal)participant.Reduction) * PrixParPersonne;
                 }
-                return prixTotal;
+                return prixTotal * 1.1m;
             }
         }
         public EtatDossierReservation EtatDossierReservation { get; set; }
