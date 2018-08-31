@@ -52,9 +52,8 @@ namespace BoVoyageMetier.Services
                 if (voyage.PlacesDisponibles >= dossierReservation.Participants.Count)
                 {
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.Accepte;
-                    new DossierData().Update(dossierReservation);
-                    voyage.PlacesDisponibles -= dossierReservation.Participants.Count;
-                    new VoyageData().Update(voyage);
+                    new DossierData().Update(dossierReservation); 
+                    new VoyageService().Reserver(voyage, dossierReservation.Participants.Count);
                 }
                 else
                 {
