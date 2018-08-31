@@ -99,10 +99,11 @@ namespace BoVoyageEF
 		private void NouveauDossier()
 		{
 			ConsoleHelper.AfficherEntete("Nouveau Dossier");
-			Console.WriteLine("\nLISTE DES VOYAGES DISPONIBLES\n");
+			OutilsConsole.CentrerTexte("LISTE DES VOYAGES DISPONIBLES");
 			OutilsConsole.Commentaire("---------- ( Le Prix/Pers est le Prix Agence indicatif) -------\n ");
 			ConsoleHelper.AfficherListe(new VoyageData().GetList(), VoyagesMenu.strategieAffichageVoyages);
-			Console.WriteLine("\nLISTE DES CLIENTS \n");
+			Console.WriteLine();
+			OutilsConsole.CentrerTexte("LISTE DES CLIENTS");
 			ConsoleHelper.AfficherListe(new ClientData().GetList(), ClientsMenu.strategieAffichageClients);
 
 			var dossierReservation = new DossierReservation
