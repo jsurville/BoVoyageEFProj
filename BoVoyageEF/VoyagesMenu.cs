@@ -100,13 +100,12 @@ namespace BoVoyageEF
         private void NouveauVoyage()
         {
             ConsoleHelper.AfficherEntete("Nouveau Voyage");
-
+			OutilsConsole.CentrerTexte("LISTE DES DESTINATIONS\n ");
 			ConsoleHelper.AfficherListe(new DestinationData().GetList(), strategieAffichageDestination);
 
 			var voyage = new Voyage
             {
-
-                DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id Destination ?"),
+                DestinationId = ConsoleSaisie.SaisirEntierObligatoire("Id de la Destination retenue ?"),
                 DateAller = ConsoleSaisie.SaisirDateObligatoire("Date Aller ?"),
                 DateRetour = ConsoleSaisie.SaisirDateObligatoire("Date Retour ?"),
                 PlacesDisponibles = ConsoleSaisie.SaisirEntierObligatoire("Places max disponibles ?"),

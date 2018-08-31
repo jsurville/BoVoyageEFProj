@@ -18,13 +18,22 @@ namespace BoVoyageMetier.DAL
             
         }
         public Participant Ajouter(Participant participant)
-        {
-            using (var contexte = new BoVoyage())
-            {
-                contexte.Participants.Add(participant);
-                contexte.SaveChanges();
-            }
-            return participant;
+		{
+			try
+			{
+				using (var contexte = new BoVoyage())
+				{
+					contexte.Participants.Add(participant);
+					contexte.SaveChanges();
+				}
+
+				return participant;
+			}
+			catch
+			{
+				return null;
+			}
+
         }
     }
 }

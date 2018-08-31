@@ -275,6 +275,14 @@ namespace BoVoyageEF
 
 			var participantService = new ParticipantService();
 			participantService.AjoutParticipant(participant);
+			if (participant != null && participant.Id != 0)
+			{
+				OutilsConsole.Commentaire("Le participant a été ajouté au dossier no " + participant.DossierReservationId);
+			}
+			else
+			{
+				OutilsConsole.Commentaire("Ajout impossible");
+			}
 		}
 
 
