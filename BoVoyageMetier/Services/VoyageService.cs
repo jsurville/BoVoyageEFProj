@@ -35,10 +35,14 @@ namespace BoVoyageMetier.Services
 			else
 			{
 				return voyageData.Effacer(voyage);
-			}
-			
-			
-			
+			}							
 		}
-	}
+
+        public Voyage Reserver(Voyage voyage, int nombreParticipant)
+        {
+            voyage.PlacesDisponibles -= nombreParticipant;
+            new VoyageData().Update(voyage);
+            return voyage;
+        }
+    }
 }
