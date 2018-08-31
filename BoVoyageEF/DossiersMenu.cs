@@ -143,14 +143,14 @@ namespace BoVoyageEF
 			var dossierReservationService = new DossierReservationService();
 			var dossierReservation = new DossierReservation();
 			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Accepter :");
-			dossierReservation = dossierReservationService.ValiderSolvabilite(dossierReservation.Id);
-			if (dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours && dossierReservation != null)
+			dossierReservation = dossierReservationService.Accepter(dossierReservation.Id);
+			if (dossierReservation.EtatDossierReservation == EtatDossierReservation.Accepte && dossierReservation != null)
 			{
-				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été Validé ");
+				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été accepté ");
 			}
 			else
 			{
-				Console.WriteLine("Validation impossible pour le dossier numero " + dossierReservation.Id);
+				Console.WriteLine("Impossible d'accepter le dossier numero " + dossierReservation.Id);
 			}
 		}
 
