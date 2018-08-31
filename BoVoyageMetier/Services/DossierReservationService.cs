@@ -71,7 +71,7 @@ namespace BoVoyageMetier.Services
         {
             var dossierReservation = new DossierData().GetById(dossierReservationId);
             if (dossierReservation != null &&
-                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours)
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.Accepte)
             {
                 var voyage = new VoyageData().GetById(dossierReservation.VoyageId);
                 if (voyage.PlacesDisponibles >= dossierReservation.Participants.Count)
@@ -96,25 +96,10 @@ namespace BoVoyageMetier.Services
         {
             bool succes = false;
             var dossierReservation = new DossierData().GetById(dossierReservationId);
-            if (dossierReservation != null
-                && (dossierReservation.RaisonAnnulationDossier == 0 )
-
-                && (dossierReservation.EtatDossierReservation == EtatDossierReservation.EnAttente
-                || dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours )
-                && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
-            {
-                dossierReservation.EtatDossierReservation = EtatDossierReservation.Clos;
-                dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
-                new DossierData().Update(dossierReservation);
-
-                succes= true;
-            }
-
+            
             if (dossierReservation != null
                 && dossierReservation.RaisonAnnulationDossier == 0
-
-                && dossierReservation.EtatDossierReservation != EtatDossierReservation.Refuse
-                
+                && dossierReservation.EtatDossierReservation != EtatDossierReservation.Refuse                
                 && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
             {
                 dossierReservation.EtatDossierReservation = EtatDossierReservation.Annule;
@@ -128,17 +113,7 @@ namespace BoVoyageMetier.Services
                 succes = true;
             }
 
-            if (dossierReservation != null
-                && dossierReservation.RaisonAnnulationDossier == 0
-                && dossierReservation.EtatDossierReservation == EtatDossierReservation.Accepte                
-                && raisonAnnulationDossier == RaisonAnnulationDossier.Client)
-            {
-                dossierReservation.EtatDossierReservation = EtatDossierReservation.Annule;
-                dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
-                new DossierData().Update(dossierReservation);
-                succes = true;
-            }
-
+            
             return succes;
         }
     }
