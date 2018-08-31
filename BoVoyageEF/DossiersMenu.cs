@@ -4,6 +4,7 @@ using  BoVoyageMetier.Entities;
 using BoVoyage.Framework.UI;
 using BoVoyageMetier.DAL;
 using BoVoyageMetier.Services;
+using System.Linq;
 
 namespace BoVoyageEF
 {
@@ -18,9 +19,10 @@ namespace BoVoyageEF
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No", 5),
 				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossierReservation, "Etat", 8),
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Num. CB", 10),
-			    InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "PrixTTC", 8),
+				InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "PrixTTC", 8),
 				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "IDClient", 4),
-				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "IdVoyage", 4)
+				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "IdVoyage", 4),
+				InformationAffichage.Creer<DossierReservation>(x=>x.Participants.Count, "Participants",10)
 			};
 
 		private static readonly List<InformationAffichage> strategieAffichageParticipants

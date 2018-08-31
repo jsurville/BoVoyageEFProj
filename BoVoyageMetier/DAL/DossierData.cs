@@ -14,7 +14,7 @@ namespace BoVoyageMetier.DAL
 		{
 			using (var contexte = new BoVoyage())
 			{
-				return contexte.DossierReservations.Include("Participants").Include("Voyage").ToList();
+				return contexte.DossierReservations.Include("Participants").Include("Assurances").Include("Voyage").ToList();
 			}
 		}
 
