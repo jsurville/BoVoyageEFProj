@@ -66,6 +66,32 @@ namespace BoVoyageMetier.Services
             return dossierReservation;
         }
 
+
+        public DossierReservation Cloturer(int dossierReservationId)
+        {
+            var dossierReservation = new DossierData().GetById(dossierReservationId);
+            if (dossierReservation != null &&
+                dossierReservation.EtatDossierReservation == EtatDossierReservation.EnCours)
+            {
+                var voyage = new VoyageData().GetById(dossierReservation.VoyageId);
+                if (voyage.PlacesDisponibles >= dossierReservation.Participants.Count)
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Accepte;
+                    new DossierData().Update(dossierReservation);
+                    voyage.PlacesDisponibles -= dossierReservation.Participants.Count;
+                    new VoyageData().Update(voyage);
+                }
+                else
+                {
+                    dossierReservation.EtatDossierReservation = EtatDossierReservation.Refuse;
+                    dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.PlacesInsuffisantes;
+                    new DossierData().Update(dossierReservation);
+                }
+            }
+            return dossierReservation;
+        }
+
+
         public bool Annuler(int dossierReservationId, RaisonAnnulationDossier raisonAnnulationDossier)
         {
             bool succes = false;
@@ -80,6 +106,7 @@ namespace BoVoyageMetier.Services
                 dossierReservation.EtatDossierReservation = EtatDossierReservation.Clos;
                 dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
                 new DossierData().Update(dossierReservation);
+
                 succes= true;
             }
 
@@ -94,7 +121,8 @@ namespace BoVoyageMetier.Services
                 dossierReservation.RaisonAnnulationDossier = RaisonAnnulationDossier.Client;
                 if (dossierReservation.Assurances.Where(x=>x.TypeAssurance==TypeAssurance.Annulation).Count()>0)
                 {
-
+                    var rembourser = new CarteBancaireService().Rembourser(dossierReservation.NumeroCarteBancaire,
+                        dossierReservation.PrixTotal);
                 }
                 new DossierData().Update(dossierReservation);
                 succes = true;
