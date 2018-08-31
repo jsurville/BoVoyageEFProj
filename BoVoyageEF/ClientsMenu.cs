@@ -11,7 +11,7 @@ namespace BoVoyageEF
     {
         // On définit ici les propriétés qu'on veut afficher
         //  et la manière de les afficher
-        private static readonly List<InformationAffichage> strategieAffichageClients =
+        internal static readonly List<InformationAffichage> strategieAffichageClients =
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Client>(x=>x.Id, "Id", 3),

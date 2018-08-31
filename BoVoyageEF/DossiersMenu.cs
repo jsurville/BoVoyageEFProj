@@ -66,9 +66,9 @@ namespace BoVoyageEF
 			{
 				FonctionAExecuter = this.AnnulerDossier
 			});
-			menu.AjouterElement(new ElementMenu("6", "Cloturer un Dossier")
+			menu.AjouterElement(new ElementMenu("6", "Ajouter une Assurance")
 			{
-				FonctionAExecuter = this.CloturerDossier
+				FonctionAExecuter = this.AjouterAssurance
 			});
 			menu.AjouterElement(new ElementMenu("7", "Liste des Participants")
 			{
@@ -94,12 +94,17 @@ namespace BoVoyageEF
 		private void NouveauDossier()
 		{
 			ConsoleHelper.AfficherEntete("Nouveau Dossier");
+			Console.WriteLine("\nLISTE DES VOYAGES DISPONIBLES\n");
+			ConsoleHelper.AfficherListe(new VoyageData().GetList(), VoyagesMenu.strategieAffichageVoyages);
+			Console.WriteLine("\nLISTE DES CLIENTS \n");
+			ConsoleHelper.AfficherListe(new ClientData().GetList(), ClientsMenu.strategieAffichageClients);
 
 			var dossierReservation = new DossierReservation
 			{
-				NumeroUnique = ConsoleSaisie.SaisirEntierObligatoire("Entrez le Numero Unique :"),
-				ClientId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id Client :"),
 				VoyageId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id du Voyage :"),
+				NumeroUnique = ConsoleSaisie.SaisirEntierObligatoire("Entrez le Numero Unique (10..) :"),
+				ClientId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id Client :"),
+				
 				PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix par Personne :"),
 				NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Numero CB :")
 				
@@ -158,14 +163,27 @@ namespace BoVoyageEF
 		{  // en attente ou en cours à refusé
 			ConsoleHelper.AfficherEntete("Annulation d'un Dossier");
 
-			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			var dossierReservationService = new DossierReservationService();
+			var dossierReservation = new DossierReservation();
+			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Annuler :");
+			var succes = dossierReservationService.Annuler(dossierReservation.Id);
+			if (succes )
+			{
+				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
+			}
+			else
+			{
+				Console.WriteLine("Impossible d'annuler le dossier numero " + dossierReservation.Id);
+			}
 		}
 
-		private void CloturerDossier()
+		private void AjouterAssurance()
 		{
-			ConsoleHelper.AfficherEntete("Cloture d'un Dossier");
+			ConsoleHelper.AfficherEntete("Ajout d'une Assurance");
 
-			//ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
+
 		}
 
 		private void AfficherParticipant()
@@ -179,12 +197,14 @@ namespace BoVoyageEF
 		{
 			ConsoleHelper.AfficherEntete("Enregistrer un Participant");
 
+			Console.WriteLine("LISTE DES DOSSIERS");
+			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
 			var participant = new Participant
 			{
 				Civilite = ConsoleSaisie.SaisirChaineObligatoire("Mr/Mme ?"),
 				Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
 				Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
-				
+				DossierReservationId = ConsoleSaisie.SaisirEntierObligatoire("Id du Dossier de réservation ?"),
 				Telephone = ConsoleSaisie.SaisirChaineOptionnelle("Telephone ?"),
 				DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de Naissance ?"),
 				Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
