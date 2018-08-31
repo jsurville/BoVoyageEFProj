@@ -21,7 +21,7 @@ namespace BoVoyageEF
                 InformationAffichage.Creer<Destination>(x=>x.Description, "Description", 25),                
             };
 
-        private static readonly List<InformationAffichage> strategieAffichageVoyages =
+        internal static readonly List<InformationAffichage> strategieAffichageVoyages =
             new List<InformationAffichage>
             {
                 InformationAffichage.Creer<Voyage>(x=>x.Id, "Id", 3),
@@ -75,7 +75,7 @@ namespace BoVoyageEF
             ConsoleHelper.AfficherListe(new DestinationData().GetList(), strategieAffichageDestination);
         }
 
-        private void AfficherVoyage()
+        internal void AfficherVoyage()
         {
             ConsoleHelper.AfficherEntete("Afficher les Voyages");
 
