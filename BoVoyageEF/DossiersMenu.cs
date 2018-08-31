@@ -106,7 +106,14 @@ namespace BoVoyageEF
 			};
 			var dossierReservationService = new DossierReservationService();
 			dossierReservationService.Ajout(dossierReservation);
-		   
+		   if (dossierReservation.Id!=0)
+			{
+				Console.WriteLine("Le Dossier a été créé avec l'Id :" + dossierReservation.Id);
+			}
+		   else
+			{
+				Console.WriteLine("Impossible de créer le dossier");
+			}
 		}
 		private void ValiderDossier()
 		{
