@@ -128,17 +128,19 @@ namespace BoVoyageEF
         private void SupprimerVoyage()
         {
             ConsoleHelper.AfficherEntete("Suppression d'un Voyage");
-            var voyageService = new VoyageService();
-            var voyage = new Voyage();
-            voyage.Id = ConsoleSaisie.SaisirEntierObligatoire("Id du voyage à supprimer ?");
-            var succes = voyageService.Supprimer(voyage.Id);
+			Console.WriteLine("LISTE DES VOYAGES\n");
+			ConsoleHelper.AfficherListe(new VoyageData().GetList(), strategieAffichageVoyages);
+			var voyageService = new VoyageService();
+            
+            var voyageId = ConsoleSaisie.SaisirEntierObligatoire("Id du voyage à supprimer ?");
+            var succes = voyageService.Supprimer(voyageId);
             if (succes == true)
             {
                 Console.WriteLine("Le voyage a été supprimé");
             }
             else
             {
-                Console.WriteLine("Impossible de supprimer le voayge ");
+                Console.WriteLine("Suppression impossible car dossier client en cours ");
             }
         }
 
