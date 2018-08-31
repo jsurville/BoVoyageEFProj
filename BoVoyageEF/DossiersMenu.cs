@@ -177,18 +177,27 @@ namespace BoVoyageEF
 			var dossierReservation = new DossierReservation();
 			dossierReservation.Id = ConsoleSaisie.SaisirEntierObligatoire("Numero du Dossier à Annuler :");
 			
-			dossierReservation.RaisonAnnulationDossier=(RaisonAnnulationDossier)ConsoleSaisie.SaisirEntierObligatoire("Raison de l'annulation" +
+			var raisonAnnulation=ConsoleSaisie.SaisirEntierObligatoire("Raison de l'annulation" +
 				"\n 1. Cause Client \n 2. Nombre de places inssufisant : ");
-
-			var succes = dossierReservationService.Annuler(dossierReservation.Id,dossierReservation.RaisonAnnulationDossier);
-			if (succes )
-			{
-				Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
+			if (raisonAnnulation >= 1 && raisonAnnulation <= 2)
+			{ 
+				dossierReservation.RaisonAnnulationDossier = (RaisonAnnulationDossier)raisonAnnulation; 
+				var succes = dossierReservationService.Annuler(dossierReservation.Id, dossierReservation.RaisonAnnulationDossier);
+				if (succes)
+				{
+					Console.WriteLine("Le Dossier numero " + dossierReservation.Id + " a bien été annulé ");
+				}
+				else
+				{
+					Console.WriteLine("Impossible d'annuler le dossier numero " + dossierReservation.Id);
+				}
 			}
 			else
 			{
-				Console.WriteLine("Impossible d'annuler le dossier numero " + dossierReservation.Id);
+				Console.WriteLine("Choix non valide...");
 			}
+
+			
 		}
 
 		private void AjouterAssurance()
