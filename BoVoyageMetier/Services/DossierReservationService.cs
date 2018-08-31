@@ -28,7 +28,7 @@ namespace BoVoyageMetier.Services
                     dossierReservation.PrixTotal))
                 {
                     dossierReservation.EtatDossierReservation = EtatDossierReservation.EnCours;
-                    DossierData.Update(dossierReservation);
+                    new DossierData().Update(dossierReservation);
                 }
 
             }
