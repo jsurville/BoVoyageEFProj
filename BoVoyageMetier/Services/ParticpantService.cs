@@ -13,7 +13,9 @@ namespace BoVoyageMetier.Services
 		public Participant AjoutParticipant(Participant participant)
 		{
 			var participantData = new ParticipantData();
-			if (participantData.GetList().Where(x => x.DossierReservationId == participant.DossierReservationId).Count() < 9)
+			if (new DestinationData().GetById(participant.DossierReservationId)!=null
+                && participantData.GetList()
+                .Where(x => x.DossierReservationId == participant.DossierReservationId).Count() < 9)
 			{
 				participantData.Ajouter(participant);
 			}
@@ -23,11 +25,5 @@ namespace BoVoyageMetier.Services
 			}
 			return participant;
 		}
-
-		//public int GetNombreParticipantParDossierId()
-		//{
-
-		//	return;
-		//}
 	}
 }
