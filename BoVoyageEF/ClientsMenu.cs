@@ -62,8 +62,8 @@ namespace BoVoyageEF
                 Civilite = ConsoleSaisie.SaisirChaineObligatoire("Mr/Mme ?"),
                 Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
                 Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
-                Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
-                Telephone = ConsoleSaisie.SaisirChaineOptionnelle("Telephone ?"),
+                Email = ConsoleSaisie.SaisirChaineObligatoire("Email ?"),
+                Telephone = ConsoleSaisie.SaisirChaineObligatoire("Telephone ?"),
                 DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de Naissance ?"),
                 Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
             };
