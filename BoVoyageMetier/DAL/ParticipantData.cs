@@ -11,20 +11,20 @@ namespace BoVoyageMetier.DAL
     {
         public List<Participant> GetList()
         {
-			using (var contexte = new BoVoyage())
-			{
-				return contexte.Participants.ToList();
-			}
-			
+            using (var contexte = new BoVoyage())
+            {
+                return contexte.Participants.ToList();
+            }
+            
         }
-		public Participant Ajouter(Participant participant)
-		{
-			using (var contexte = new BoVoyage())
-			{
-				contexte.Participants.Add(participant);
-				contexte.SaveChanges();
-			}
-			return participant;
-		}
-	}
+        public Participant Ajouter(Participant participant)
+        {
+            using (var contexte = new BoVoyage())
+            {
+                contexte.Participants.Add(participant);
+                contexte.SaveChanges();
+            }
+            return participant;
+        }
+    }
 }
