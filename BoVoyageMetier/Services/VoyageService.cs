@@ -13,7 +13,13 @@ namespace BoVoyageMetier.Services
 		public Voyage Ajout(Voyage voyage)
 		{
 			var voyageData = new VoyageData();
-			voyageData.Ajout(voyage);
+			if (voyage.DateAller > DateTime.Now.AddDays(3) && voyage.DateRetour> voyage.DateAller.AddDays(2)&& 
+				new DestinationData().GetById(voyage.DestinationId)!=null)
+			{
+				voyageData.Ajout(voyage);
+			}
+
+
 			return voyage;
 		}
 
