@@ -97,9 +97,9 @@ namespace BoVoyageEF
 
 			var dossierVoyage = new DossierReservation
 			{
-				//Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
-				//Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
-				//Email = ConsoleSaisie.SaisirChaineOptionnelle("Email ?"),
+				NumeroUnique = ConsoleSaisie.SaisirEntierObligatoire("Entrez le Numero Unique :"),
+				ClientId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id Client :"),
+				VoyageId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id du Voyage :"),
 				//DateNaissance = ConsoleSaisie.SaisirDateOptionnelle("Date d'inscription ?")
 			};
 
