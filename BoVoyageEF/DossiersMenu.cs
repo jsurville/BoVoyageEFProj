@@ -19,10 +19,10 @@ namespace BoVoyageEF
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroUnique, "No", 5),
 				InformationAffichage.Creer<DossierReservation>(x=>x.EtatDossierReservation, "Etat", 8),
 				InformationAffichage.Creer<DossierReservation>(x=>x.NumeroCarteBancaire, "Num. CB", 10),
-				InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "PrixTTC", 8),
-				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "IDClient", 4),
-				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "IdVoyage", 4),
-				InformationAffichage.Creer<DossierReservation>(x=>x.Participants.Count, "Participants",10)
+				InformationAffichage.Creer<DossierReservation>(x=>x.PrixTotal, "PrixTTC", 10),
+				InformationAffichage.Creer<DossierReservation>(x=>x.ClientId, "IDClient", 10),
+				InformationAffichage.Creer<DossierReservation>(x=>x.VoyageId, "IdVoyage", 10),
+				InformationAffichage.Creer<DossierReservation>(x=>x.Participants.Count, "Participants",15)
 			};
 
 		private static readonly List<InformationAffichage> strategieAffichageParticipants
@@ -31,9 +31,9 @@ namespace BoVoyageEF
 			{
 				InformationAffichage.Creer<Participant>(x=>x.Id, "Id", 3),
 				InformationAffichage.Creer<Participant>(x=>x.DossierReservationId, "No Dossier", 10),
-				InformationAffichage.Creer<Participant>(x=>x.ToString(), "Participant", 15),								   
+				InformationAffichage.Creer<Participant>(x=>x.NomComplet, "Participant", 20),								   
 				InformationAffichage.Creer<Participant>(x=>x.Telephone, "Telephone", 12),
-				InformationAffichage.Creer<Participant>(x=>x.DateNaissance, "Date Naissance", 12),
+				InformationAffichage.Creer<Participant>(x=>x.DateNaissance, "Date Naissance", 15),
 				InformationAffichage.Creer<Participant>(x=>x.Reduction, "Reducs",10),
 				InformationAffichage.Creer<Participant>(x=>x.Adresse, "Adresse", 15)
 			};
@@ -81,7 +81,7 @@ namespace BoVoyageEF
 				FonctionAExecuter = this.AfficherParticipant
 			});
 
-			menu.AjouterElement(new ElementMenu("9", "Enregistrer des Participants")
+			menu.AjouterElement(new ElementMenu("9", "Enregistrer un Nouveau Participant")
 			{
 				FonctionAExecuter = this.EnregistrerParticipant
 			});
@@ -113,7 +113,7 @@ namespace BoVoyageEF
 				NumeroUnique = ConsoleSaisie.SaisirEntierObligatoire("Entrez le Numero Unique (10..) :"),
 				ClientId = ConsoleSaisie.SaisirEntierObligatoire("Entrez l' Id Client :"),
 				
-				PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix par Personne :"),
+				PrixParPersonne = ConsoleSaisie.SaisirDecimalObligatoire("Prix par Personne BoVoyage :"),
 				NumeroCarteBancaire = ConsoleSaisie.SaisirChaineObligatoire("Numero CB :")
 				
 			};
@@ -264,13 +264,13 @@ namespace BoVoyageEF
 			ConsoleHelper.AfficherListe(new DossierData().GetList(), strategieAffichageDossiers);
 			var participant = new Participant
 			{
+				DossierReservationId = ConsoleSaisie.SaisirEntierObligatoire("Id du Dossier de réservation ?"),
 				Civilite = ConsoleSaisie.SaisirChaineObligatoire("Mr/Mme ?"),
 				Nom = ConsoleSaisie.SaisirChaineObligatoire("Nom ?"),
-				Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),
-				DossierReservationId = ConsoleSaisie.SaisirEntierObligatoire("Id du Dossier de réservation ?"),
-				Telephone = ConsoleSaisie.SaisirChaineOptionnelle("Telephone ?"),
+				Prenom = ConsoleSaisie.SaisirChaineObligatoire("Prénom ?"),				
+				Telephone = ConsoleSaisie.SaisirChaineObligatoire("Telephone ?"),
 				DateNaissance = ConsoleSaisie.SaisirDateObligatoire("Date de Naissance ?"),
-				Adresse = ConsoleSaisie.SaisirChaineOptionnelle("Adresse ?"),
+				Adresse = ConsoleSaisie.SaisirChaineObligatoire("Adresse ?"),
 			};
 
 			var participantService = new ParticipantService();
