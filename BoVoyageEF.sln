@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyageMetier", "BoVoyageM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyageEF", "BoVoyageEF\BoVoyageEF.csproj", "{4C55400F-7B75-4B37-85E5-11EB0A375E5B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6F7BE5A-E5DD-4A84-B581-9AD421F49903}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{A0D92AEE-9B43-4287-A34F-52A12205679C}"
 	ProjectSection(SolutionItems) = preProject
-		BoVoyageDB.bacpac = BoVoyageDB.bacpac
+		BoVoyage.bacpac = BoVoyage.bacpac
 	EndProjectSection
 EndProject
 Global
